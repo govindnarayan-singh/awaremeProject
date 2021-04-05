@@ -1,0 +1,68 @@
+{% extends 'awaremeapp/normal.html' %}
+{% block content %}
+
+
+
+
+<div class="jumbotron form-group" style="text-align:center">
+<form method="POST">
+
+    <h1 style="text-align:center">REGISTER</h1>
+
+    {% csrf_token %}
+
+    <label >Name of organisation :</label>
+    {{form1.username}}
+    <br>
+
+    
+    <label > Please enter name of  organisation again :</label>
+    {{form.name}}
+    <br>
+
+    <label >organisation Email :</label>
+    {{form1.email}}
+    <br>
+
+    <label >password :</label>
+    {{form1.password1}}
+    <br>
+
+    <label >enter password again:</label>
+    {{form1.password2}}
+    <br>
+
+
+    <label >organisation contact number :</label>
+   {{form.Contact}}
+    <br>
+
+       
+    <label > Portfolio of organisation :</label>
+    {{form.portfolio}}
+    <br>
+
+    
+    <label >Mission of organisation :</label>
+<br>
+    {{form.mission}}
+    <br>
+
+    {{form1.errors}}
+
+    <input type="submit" class="btn btn-primary" value="submit">
+    <div class="container">
+        <h6>already have an account?,</h6>
+        <footer style= "text-align:center">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">login</a>
+            {% endif %}
+        </footer>
+    </div>
+
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'awaremeapp/base.html' %}
+{% block content %}
+
+<h1>Welcome to Aware Me</h1>
+<p>hello,{{request.user}}</p>
+<table class="table">
+    <thead>
+<tr>
+    <th scope="col">name</th>
+    <th scope="col">portfolio</th>
+    
+</tr>
+</thead>
+{% for i in model %}
+<tr>
+    <td scope="row">{{i.name}}</td>
+    <td scope="row">{{i.portfolio}}</td>
+</tr>
+{% endfor %}
+
+</table>
+<a href="{% url 'index' %}">index</a>
+{% endblock %}
+
+
+

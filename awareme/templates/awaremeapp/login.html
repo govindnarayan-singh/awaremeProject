@@ -1,0 +1,28 @@
+{% extends 'awaremeapp/normal.html' %}
+{% block content %}
+<div class="jumbotron" style="text-align:center">
+<form action="{% url 'login' %}" method='POST'>
+    
+{% csrf_token %}
+ <label for="name">ENTER ORGANISATION NAME:</label>
+ <input type="text" id="username" name="username" >
+<br>
+ <label for="pass">ENTER PASSWORD:</label>
+ <input type="password" id="pass" name="password" >
+ <br>
+
+<input type="submit">
+<br>
+<br>
+{% for message in messages %}
+<b>{{message}}</b>
+{% endfor %}
+
+<p>don't have an account create one here</p>
+
+<a href="{% url 'register' %}">sign up</a>
+
+
+</form>
+</div>
+{% endblock %}

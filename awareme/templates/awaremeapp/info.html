@@ -7,14 +7,14 @@
     <thead>
 <tr>
     <th scope="col">name</th>
-    <th scope="col">portfolio</th>
+    <th scope="col">contact</th>
     
 </tr>
 </thead>
 {% for i in model %}
 <tr>
-    <td scope="row">{{i.name}}</td>
-    <td scope="row">{{i.portfolio}}</td>
+    <td scope="row"><a href="{% url 'org_profile' i.id %}">{{i.name}}</a></td>
+    <td scope="row">{{i.Contact}}</td>
 </tr>
 {% endfor %}
 

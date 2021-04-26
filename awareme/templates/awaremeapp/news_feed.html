@@ -1,0 +1,11 @@
+{% extends 'awaremeapp/base.html' %}
+{% block content %}
+<br>
+<h1>{{newspk.title}}</h1>
+<b>{{newspk.author}} {{newspk.start_datetime}}</b>
+<hr>
+<p>{{newspk.address}} </p>
+<hr>
+<p>{{newspk.brief}}</p>
+<a href="{% url 'listFeed' %}">back</a>
+{% endblock %}

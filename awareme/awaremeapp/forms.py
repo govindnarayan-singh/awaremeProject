@@ -14,7 +14,12 @@ class OrgUser(UserCreationForm):
 
 class Organisation(ModelForm):
     class Meta:
-        model = OrgModel
+        model = OrgDetail
         fields = '__all__'
+    
+class Formfeed(ModelForm):
+    class Meta:
+        model=OrgFeed
+        fields='__all__'
 
 

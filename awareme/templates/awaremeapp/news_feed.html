@@ -2,10 +2,14 @@
 {% block content %}
 <br>
 <h1>{{newspk.title}}</h1>
-<b>{{newspk.author}} {{newspk.start_datetime}}</b>
+<p><b>editor: </b>{{newspk.author}} {{newspk.start_datetime}}</p>
 <hr>
 <p>{{newspk.address}} </p>
 <hr>
 <p>{{newspk.brief}}</p>
 <a href="{% url 'listFeed' %}">back</a>
+<hr>
+<a href="{% url 'updateFeed' newspk.id %}">update </a>
+<hr>
+<a href="{% url 'deleteFeed' newspk.id %}">delete </a>
 {% endblock %}

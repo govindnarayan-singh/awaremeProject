@@ -6,7 +6,11 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+# @login_required(login_url='login')
+def index(request):
+    return render(request,'awaremeapp/index.html')
 
+    
 def orgRegister(request):
     if request.user.is_authenticated:
         return redirect('details')
@@ -50,10 +54,6 @@ def user_login(request):
         return render(request,'awaremeapp/login.html')
 
 
-# @login_required(login_url='login')
-def index(request):
-    return render(request,'awaremeapp/index.html')
-
 
 @login_required(login_url='login')
 def orgList(request):
@@ -91,6 +91,28 @@ def newsFeed(request,pk):
     newspk=OrgFeed.objects.get(id=pk)
     context={'news':news,'newspk':newspk}
     return render(request,'awaremeapp/news_feed.html',context)
+
+@login_required(login_url='login')
+def updateFeed(request,pk):
+    upnewspk=OrgFeed.objects.get(id=pk)
+    form=Formfeed(instance=upnewspk)
+    if request.method=='POST':
+        form=Formfeed(request.POST,instance=upnewspk)
+        if form.is_valid():
+            form.save()
+            return redirect('listFeed')
+    context={'form':form}
+    return render(request,'awaremeapp/feed_form.html',context)
+
+@login_required(login_url='login')
+def deleteFeed(request,pk):
+    dlnewspk=OrgFeed.objects.get(id=pk)
+    if request.method=='POST':
+        dlnewspk.delete()
+        return redirect('listFeed')
+    
+    context={'dlnewspk':dlnewspk}
+    return render(request,'awaremeapp/delete_feed.html',context)
 
 
 

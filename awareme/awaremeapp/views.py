@@ -55,7 +55,7 @@ def user_login(request):
 
 
 
-@login_required(login_url='login')
+
 def orgList(request):
     Instance1=OrgDetail.objects.all()
     return render(request,'awaremeapp/info.html',{'model':Instance1})
@@ -78,14 +78,14 @@ def createFeed(request):
     context={'form':form}
     return render(request,'awaremeapp/feed_form.html',context)
 
-@login_required(login_url='login')
+
 def listFeed(request):
     feed=OrgFeed.objects.all()
     context={'feed':feed}
     return render(request,'awaremeapp/list_feed.html',context)
 
 
-@login_required(login_url='login')
+
 def newsFeed(request,pk):
     news=OrgFeed.objects.all()
     newspk=OrgFeed.objects.get(id=pk)

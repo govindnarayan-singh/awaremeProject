@@ -5,7 +5,7 @@
 {% for feeds in feed %}
 <ul>
     <li><a href="{% url 'newsFeed' feeds.id %}">{{feeds.title}}</a></li>
-</ul>
+</ul>  
 {% endfor %}
 <a href="{% url 'feed' %}">Create News</a>
 <p>list of organisations </p>

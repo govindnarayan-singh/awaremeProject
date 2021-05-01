@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'awaremeapp',
     'phone_field',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

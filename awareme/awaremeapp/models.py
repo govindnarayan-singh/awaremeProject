@@ -36,7 +36,6 @@ class OrgFeed(models.Model):
     locations=models.CharField(choices=statesNunions,max_length=100)
     address=models.CharField(blank=True,null=True,max_length=500)
     start_datetime = models.DateTimeField(auto_now_add=True, null=True)
-
     def __str__(self):
         return self.title
     

@@ -5,6 +5,7 @@ from .forms import *
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .filters import newsFilter
 
 # @login_required(login_url='login')
 def index(request):
@@ -81,7 +82,9 @@ def createFeed(request):
 
 def listFeed(request):
     feed=OrgFeed.objects.all()
-    context={'feed':feed}
+    filterNews = newsFilter(request.GET,queryset=feed)
+    feed=filterNews.qs 
+    context={'feed':feed,'filterNews':filterNews}
     return render(request,'awaremeapp/list_feed.html',context)
 
 

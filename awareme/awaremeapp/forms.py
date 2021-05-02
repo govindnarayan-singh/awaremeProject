@@ -16,6 +16,7 @@ class Organisation(ModelForm):
     class Meta:
         model = OrgDetail
         fields = '__all__'
+        exclude=['user']
     
 class Formfeed(ModelForm):
     class Meta:

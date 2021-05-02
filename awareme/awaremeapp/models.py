@@ -1,16 +1,20 @@
 from django.db import models
 from phone_field import PhoneField
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 
 
 class OrgDetail(models.Model):
+    user=models.OneToOneField(User,null=True, on_delete=models.CASCADE)
     mission=models.TextField(blank=True,null=True)
     Contact=PhoneField(blank=True,help_text='Contact phone number')
     portfolio=models.URLField(blank=True,null=True)
+    profile_pic=models.ImageField(null=True,blank=True)
     
     def __str__(self):
-        return self.name
+        return str(self.user)
+
+
 
 class OrgFeed(models.Model):
 

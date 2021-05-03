@@ -17,26 +17,37 @@ def index(request):
 @unauthenticated_user 
 def orgRegister(request):
     form1=OrgUser()
-    form=Organisation()
+    
     if request.method =='POST':
         form1=OrgUser(request.POST)
-        form=Organisation(request.POST)
-        if form1.is_valid() and form.is_valid():
+
+        if form1.is_valid():
             user=form1.save()
-            form.save()
+        
 
             group = Group.objects.get(name='NGO')
             user.groups.add(group)
 
             username = form1.cleaned_data.get('username')
-            messages.success(request,'account created successfully' + username)
-            return redirect('login')
+            messages.success(request,'account created successfully with username as ' + username)
+            return redirect('mission')
         else:
             print("error!")
     else:
         form1=OrgUser()
         form=Organisation()
     return render(request,'awaremeapp/registration.html',{'form1':form1,'form':form})
+
+@unauthenticated_user
+def mission(request):
+    form=mission_register()
+    if request.method== 'POST':
+        form=mission_register(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    context={'form':form}
+    return render(request,'awaremeapp/register_mission.html',context)
 
 @login_required(login_url='login')
 def user_logout(request):
@@ -124,6 +135,21 @@ def deleteFeed(request,pk):
     
     context={'dlnewspk':dlnewspk}
     return render(request,'awaremeapp/delete_feed.html',context)
+
+@login_required(login_url='login')
+@allowed_user(allowed_roles=['admin','NGO'])
+def account_set(request):
+    ngo = request.user.orgdetail
+    form = Organisation(instance=ngo)
+    if request.method == 'POST':
+        form = Organisation(request.POST, request.FILES,instance=ngo)
+        if form.is_valid():
+            form.save()
+            return redirect('listFeed')
+    context={'form':form}
+    return render(request,'awaremeapp/account_setting.html',context)
+
+
 
 
 

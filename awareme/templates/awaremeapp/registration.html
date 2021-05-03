@@ -8,7 +8,7 @@
 
     {% csrf_token %}
 
-    <label >username for organisation :</label>
+    <label >username :</label>
     {{form1.username}}
     <br>
 
@@ -27,22 +27,6 @@
 
     <label >enter password again:</label>
     {{form1.password2}}
-    <br>
-
-
-    <label >organisation contact number :</label>
-   {{form.Contact}}
-    <br>
-
-       
-    <label > Portfolio of organisation :</label>
-    {{form.portfolio}}
-    <br>
-
-    
-    <label >Mission of organisation :</label>
-<br>
-    {{form.mission}}
     <br>
 
     {{form1.errors}}

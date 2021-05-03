@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 
 
 class OrgDetail(models.Model):
-    user=models.OneToOneField(User,null=True, on_delete=models.CASCADE)
+    user=models.OneToOneField(User,null=True,blank=True, on_delete=models.CASCADE)
     mission=models.TextField(blank=True,null=True)
     Contact=PhoneField(blank=True,help_text='Contact phone number')
     portfolio=models.URLField(blank=True,null=True)
-    profile_pic=models.ImageField(null=True,blank=True)
+    profile_pic=models.ImageField(upload_to='awareme\static\images',default='default.png',null=True)
     
     def __str__(self):
         return str(self.user)

@@ -12,12 +12,17 @@ class OrgUser(UserCreationForm):
 
 
 
+class mission_register(ModelForm):
+    class Meta:
+        model = OrgDetail
+        fields = '__all__'
+
 class Organisation(ModelForm):
     class Meta:
         model = OrgDetail
         fields = '__all__'
         exclude=['user']
-    
+
 class Formfeed(ModelForm):
     class Meta:
         model=OrgFeed

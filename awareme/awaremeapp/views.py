@@ -6,14 +6,12 @@ from .forms import *
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .filters import newsFilter
 from .decorators import *
 
 
 
-def index(request):
-    return render(request,'awaremeapp/index.html')
 
+#Authentication APIs
 @unauthenticated_user 
 def orgRegister(request):
     form1=OrgUser()
@@ -52,8 +50,7 @@ def mission(request):
 @login_required(login_url='login')
 def user_logout(request):
     logout(request)
-    return redirect('index')
-
+    return redirect('login')
 
 @unauthenticated_user 
 def user_login(request):
@@ -69,8 +66,7 @@ def user_login(request):
     return render(request,'awaremeapp/login.html')
 
 
-
-
+#Html pages
 def orgList(request):
     Instance1=OrgDetail.objects.all()
     userList = User.objects.values()
@@ -94,22 +90,16 @@ def createFeed(request):
     context={'form':form}
     return render(request,'awaremeapp/feed_form.html',context)
 
-
 def listFeed(request):
     feed=OrgFeed.objects.all()
-    filterNews = newsFilter(request.GET,queryset=feed)
-    feed=filterNews.qs 
-    context={'feed':feed,'filterNews':filterNews}
+    context={'feed':feed,}
     return render(request,'awaremeapp/list_feed.html',context)
-
-
 
 def newsFeed(request,pk):
     news=OrgFeed.objects.all()
     newspk=OrgFeed.objects.get(id=pk)
     context={'news':news,'newspk':newspk}
     return render(request,'awaremeapp/news_feed.html',context)
-
 
 @allowed_user(allowed_roles=['admin','NGO'])
 @login_required(login_url='login')
@@ -123,7 +113,6 @@ def updateFeed(request,pk):
             return redirect('listFeed')
     context={'form':form}
     return render(request,'awaremeapp/feed_form.html',context)
-
 
 @allowed_user(allowed_roles=['admin','NGO'])
 @login_required(login_url='login')
@@ -149,7 +138,42 @@ def account_set(request):
     context={'form':form}
     return render(request,'awaremeapp/account_setting.html',context)
 
+# def PostComment(request,pk):
+#     if request.method=="POST":
+#         comment=request.POST.get("comment")
+#         writer=request.user
+#         # postId=request.POST.get("postId")
+#         post=OrgFeed.objects.get(id=pk)
 
+#         comment=FeedComment(comment=comment,writer=writer,post=post)
+#         comment.save()
+#         messages.success(request, "Your comment has been posted successfully")
+    
+#     return redirect(f"/newsFeed/{pk}/")
+
+def search(request):
+    query=request.GET['query']
+    if len(query) > 70:
+        feed=OrgFeed.objects.none()
+        
+
+    else:
+        feedtitle=OrgFeed.objects.filter(title__icontains=query)
+        feedcontent=OrgFeed.objects.filter(brief__icontains=query)
+        feed2=feedtitle.union(feedcontent)
+        feedlocation=OrgFeed.objects.filter(locations__icontains=query)
+        feedlocation=OrgFeed.objects.filter(author__icontains=query)
+        feed3=feed2.union(feedlocation)
+        feed=feed3.union(feed3)
+
+
+    if feed.count() == 0:
+        messages.warning(request," no results found please refine your query ")
+
+
+    context={'feed':feed,'query':query}
+    return render(request,'awaremeapp/search.html',context)
+     
 
 
 

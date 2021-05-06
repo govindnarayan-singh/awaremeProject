@@ -1,15 +1,27 @@
-{% extends 'awaremeapp/base.html' %}
+{% extends 'awaremeapp/orgbase.html' %}
 {% block content %}
 <br>
+<div class="container-fluid">
 <h1>{{newspk.title}}</h1>
-<p><b>editor: </b>{{newspk.author}} {{newspk.start_datetime}}</p>
+<p><b>editor: </b>{{newspk.author}} {{newspk.timestamp}}</p>
 <hr>
 <p>{{newspk.address}} </p>
 <hr>
 <p>{{newspk.brief}}</p>
-<a href="{% url 'listFeed' %}">back</a>
 <hr>
-<a href="{% url 'updateFeed' newspk.id %}">update </a>
+<div>
+<a class="btn btn-light" href="{% url 'updateFeed' newspk.id %}">update news </a>
+
+<a class ="btn btn-danger" href="{% url 'deleteFeed' newspk.id %}">delete </a>
+
+<h2>Comments</h2>
+<form action="" method="POST">
+{% csrf_token %}
+<input type="text" name="comment" placeholder="add your comments">
+<input type="submit" value="submit">
+
+</form>
+</div>
 <hr>
-<a href="{% url 'deleteFeed' newspk.id %}">delete </a>
+</div>
 {% endblock %}

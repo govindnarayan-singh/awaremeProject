@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- linking bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title> {% block title %} {% endblock title %}</title>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark "  >
+        <div class="container-fluid">
+          <a class="navbar-brand mx-10 ml-5 mr-5" href="/">AwareMe</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link {% block homeactive %} {% endblock homeactive %}" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link {% block aboutactive %} {% endblock aboutactive %}" aria-current="page" href="{% url 'home' %}">About us</a>
+              </li>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link {% block contactactive %} {% endblock contactactive %}" aria-current="page" href="{% url 'contact' %}">Contact</a>
+              </li>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link {% block organistionactive %} {% endblock organistionactive %}" aria-current="page" href="{% url 'details' %}">Organisations</a>
+                  </li>
+              <li class="nav-item me-auto mb-2 mb-lg-0">
+                <a class="nav-link" href="{% url 'feed' %}">Create News</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link {% block settingactive %} {% endblock settingactive %}" href="{% url 'account_setting' %}">account settings</a>
+              </li>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page">hello,{{request.user}}</a>
+                  </li>
+                  <form class="d-flex" method="GET" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    <input class="form-control me-4 mx-4" type="search" placeholder="Search" name="query" id="query" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+              {% if user.is_authenticated %}
+              <li class="nav-item {% block logoutactive %} {% endblock logoutactive %}">
+                <a class="nav-link" href="{% url 'logout' %}">logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item {% block loginactive %} {% endblock loginactive %}">
+                <a class="nav-link" href="{% url 'login' %}">login</a>
+              </li>
+              {% endif %}
+          </div>
+        </div>
+      </nav>
+    
+      {% for message in messages %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>message : </strong> {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+      </div>
+    
+        {% block content %}
+        {% endblock %}
+
+</body>
+</html>

@@ -1,30 +1,35 @@
-{% extends 'awaremeapp/normal.html' %}
+{% extends 'base.html' %}
+{% block loginactive %} active {% endblock loginactive %}
+
+{% block title %}
+    login page
+{% endblock title %}
+
+
 {% block content %}
-
-
-<div class="jumbotron" style="text-align:center">
+<p></p>
+<div class="container">
 <form action="{% url 'login' %}" method='POST'>
-    
-{% csrf_token %}
- <label for="name">ENTER ORGANISATION NAME:</label>
- <input type="text" id="username" name="username" >
-<br>
- <label for="pass">ENTER PASSWORD:</label>
- <input type="password" id="pass" name="password" >
- <br>
-
-<input type="submit">
-<br>
-<br>
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label" >Username</label>
+      <input type="text" class="form-control" name="username">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="password" >
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 {% for message in messages %}
 <b>{{message}}</b>
 {% endfor %}
+<br>
+<p>don't have an account?,create one here <a href="{% url 'register' %}">sign up</a></p>
 
-<p>don't have an account create one here</p>
-
-<a href="{% url 'register' %}">sign up</a>
 
 
 </form>
+</div>
 </div>
 {% endblock %}

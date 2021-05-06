@@ -1,5 +1,6 @@
-{% extends 'awaremeapp/base.html' %}
+{% extends 'awaremeapp/orgbase.html' %}
 {% load static %}
+{% block settingactive %} active {% endblock settingactive %}
 {% block content %}
 <h1>Account settings</h1>
 <p>hello,{{request.user}}</p>

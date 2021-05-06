@@ -1,20 +1,17 @@
 from django.db import models
-from phone_field import PhoneField
 from django.contrib.auth.models import User
-
+from django.utils.timezone import now
 
 
 class OrgDetail(models.Model):
     user=models.OneToOneField(User,null=True,blank=True, on_delete=models.CASCADE)
     mission=models.TextField(blank=True,null=True)
-    Contact=PhoneField(blank=True,help_text='Contact phone number')
+    Contact=models.CharField(max_length=15,null=True)
     portfolio=models.URLField(blank=True,null=True)
     profile_pic=models.ImageField(upload_to='awareme\static\images',default='default.png',null=True)
     
     def __str__(self):
         return str(self.user)
-
-
 
 class OrgFeed(models.Model):
 
@@ -38,10 +35,17 @@ class OrgFeed(models.Model):
     author=models.CharField(blank=True,null=True,max_length=250)
     locations=models.CharField(choices=statesNunions,max_length=100)
     address=models.CharField(blank=True,null=True,max_length=500)
-    start_datetime = models.DateTimeField(auto_now_add=True, null=True)
+    timestamp = models.DateTimeField(default=now)
     def __str__(self):
-        return self.title
+        return self.title + ' by ' + self.author
     
+
+class FeedComment(models.Model):
+    comment=models.TextField(blank=True,null=True)
+    writer=models.ForeignKey(User,on_delete=models.CASCADE)
+    post=models.ForeignKey(OrgFeed, on_delete=models.CASCADE)
+    parent=models.ForeignKey('self', on_delete=models.CASCADE,null=True)
+    timestamp = models.DateTimeField(default=now)
 
 
 

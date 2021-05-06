@@ -18,9 +18,15 @@ from awaremeapp import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+admin.site.site_header="AwareMe Admin"
+admin.site.site_title="AwareMe Admin Panel"
+admin.site.index_title="Welcome to AwareMe Admin Panel"
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('awaremeapp.urls')),
+    path('',include('home.urls')),
+    path('awareme/',include('awaremeapp.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

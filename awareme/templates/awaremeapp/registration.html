@@ -1,49 +1,49 @@
-{% extends 'awaremeapp/normal.html' %}
+{% extends 'base.html' %}
 {% block content %}
 
 <div class="jumbotron form-group" style="text-align:center">
-<form method="POST">
+    <form method="POST">
 
-    <h1 style="text-align:center">REGISTER</h1>
+        <h1 style="text-align:center">REGISTER</h1>
 
-    {% csrf_token %}
+        {% csrf_token %}
 
-    <label >username :</label>
-    {{form1.username}}
-    <br>
+        <label>username :</label>
+        {{form1.username}}
+        <br>
 
-    
-    <label>enter name of organisation :</label>
-    {{form1.first_name}}
-    <br>
 
-    <label >organisation Email :</label>
-    {{form1.email}}
-    <br>
+        <label>enter name of organisation :</label>
+        {{form1.first_name}}
+        <br>
 
-    <label >password :</label>
-    {{form1.password1}}
-    <br>
+        <label>organisation Email :</label>
+        {{form1.email}}
+        <br>
 
-    <label >enter password again:</label>
-    {{form1.password2}}
-    <br>
+        <label>password :</label>
+        {{form1.password1}}
+        <br>
 
-    {{form1.errors}}
+        <label>enter password again:</label>
+        {{form1.password2}}
+        <br>
 
-    <input type="submit" class="btn btn-primary" value="submit">
-    <div class="container">
-        <h6>already have an account?,</h6>
-        <footer style= "text-align:center">
-            {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}">logout</a>
-            {% else %}
-            <a href="{% url 'login' %}">login</a>
-            {% endif %}
-        </footer>
-    </div>
+        {{form1.errors}}
 
-</form>
+        <input type="submit" class="btn btn-primary" value="submit">
+        <div class="container">
+            <h6>already have an account?,</h6>
+            <footer style="text-align:center">
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">logout</a>
+                {% else %}
+                <a href="{% url 'login' %}">login</a>
+                {% endif %}
+            </footer>
+        </div>
+
+    </form>
 </div>
 
 {% endblock %}

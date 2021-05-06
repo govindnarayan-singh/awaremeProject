@@ -1,27 +1,18 @@
-{% extends 'awaremeapp/base.html' %}
-{% block content %}
-<br>
-<br>
-<form method="GET">
-     {% csrf_token %}
-    {{filterNews.form}}
-    <input type="submit" value="submit">
-    <hr>
-<p>NEWS</p>
-</form>
-{% for feeds in feed %}
-<ul>
-    <li><a href="{% url 'newsFeed' feeds.id %}">{{feeds.title}}</a></li>
-</ul>  
-{% endfor %}
-<hr>
-{% if user.is_authenticated %}
-<a href="{% url 'account_setting' %}">account settings</a>
-<hr>
-<a href="{% url 'feed' %}">Create News</a>
-<hr>
-<p>list of organisations </p>
-<a href="{% url 'details' %}">NGO's</a>
-{% endif %}
+{% extends 'awaremeapp/orgbase.html' %}
 
+{% block content %}
+
+<div class="container">
+
+<br>
+
+<ol>
+    {% for feeds in feed %}
+        <li><h6><U>{{feeds.title}}</U></h6></li>
+        <p>author--{{feeds.author}}<br>
+        {{feeds.brief|truncatechars:500}}
+        <a class="btn btn-primary" href="{% url 'newsFeed' feeds.id %}">read full</a></p>
+    {% endfor %}
+</ol>
+</div>
 {% endblock %}

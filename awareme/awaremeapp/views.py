@@ -96,9 +96,10 @@ def listFeed(request):
     return render(request,'awaremeapp/list_feed.html',context)
 
 def newsFeed(request,pk):
-    news=OrgFeed.objects.all()
     newspk=OrgFeed.objects.get(id=pk)
-    context={'news':news,'newspk':newspk}
+    comments=FeedComment.objects.filter(post=newspk)
+    count=comments.count()
+    context={'newspk':newspk,'comments':comments,'count':count}
     return render(request,'awaremeapp/news_feed.html',context)
 
 @allowed_user(allowed_roles=['admin','NGO'])
@@ -138,19 +139,20 @@ def account_set(request):
     context={'form':form}
     return render(request,'awaremeapp/account_setting.html',context)
 
-# def PostComment(request,pk):
-#     if request.method=="POST":
-#         comment=request.POST.get("comment")
-#         writer=request.user
-#         # postId=request.POST.get("postId")
-#         post=OrgFeed.objects.get(id=pk)
+def postComment(request,pk):
+    if request.method=="POST":
+        comment=request.POST.get("comment")
+        writer=request.user
+        post=OrgFeed.objects.get(id=pk)
 
-#         comment=FeedComment(comment=comment,writer=writer,post=post)
-#         comment.save()
-#         messages.success(request, "Your comment has been posted successfully")
+        comment=FeedComment(comment=comment,writer=writer,post=post)
+        comment.save()
+        messages.success(request, "Your comment has been posted successfully")
     
-#     return redirect(f"/newsFeed/{pk}/")
+    return redirect(f'/awareme/newsFeed/{pk}')
 
+
+@login_required(login_url='login')
 def search(request):
     query=request.GET['query']
     if len(query) > 70:

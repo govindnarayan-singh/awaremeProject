@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .decorators import *
-
+from awaremeapp.templatetags import extras
 
 
 
@@ -97,9 +97,20 @@ def listFeed(request):
 
 def newsFeed(request,pk):
     newspk=OrgFeed.objects.get(id=pk)
-    comments=FeedComment.objects.filter(post=newspk)
+    comments=FeedComment.objects.filter(post=newspk,parent=None)
+    replies=FeedComment.objects.filter(post=newspk).exclude(parent=None)
+    
+    replyDict={}
+
+    for reply in replies:
+        if reply.id not in replyDict.keys():
+            replyDict[reply.parent.id]=[reply]
+        else:
+            replyDict[reply.parent.id].append(reply)
+
+    print(replyDict)
     count=comments.count()
-    context={'newspk':newspk,'comments':comments,'count':count}
+    context={'newspk':newspk,'comments':comments,'count':count,'replyDict':replyDict}
     return render(request,'awaremeapp/news_feed.html',context)
 
 @allowed_user(allowed_roles=['admin','NGO'])
@@ -143,11 +154,19 @@ def postComment(request,pk):
     if request.method=="POST":
         comment=request.POST.get("comment")
         writer=request.user
+    
         post=OrgFeed.objects.get(id=pk)
+        parentSno=request.POST.get("parentSno")
 
-        comment=FeedComment(comment=comment,writer=writer,post=post)
-        comment.save()
-        messages.success(request, "Your comment has been posted successfully")
+        if parentSno== "":
+            comment=FeedComment(comment=comment,writer=writer,post=post)
+            comment.save()
+            messages.success(request, "Your comment has been posted successfully")
+        else:
+            parent = FeedComment.objects.get(id=parentSno)
+            comment=FeedComment(comment=comment,writer=writer,post=post,parent=parent)
+            comment.save()
+            messages.success(request, "Your reply has been posted successfully")
     
     return redirect(f'/awareme/newsFeed/{pk}')
 

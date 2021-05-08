@@ -1,7 +1,11 @@
 {% extends 'awaremeapp/orgbase.html' %}
 {% block content %}
 {% load humanize %}
+{% load extras %}
 <br>
+
+
+
 <div class="container-fluid">
     <h1>{{newspk.title}}</h1>
     <p><b>editor: </b>{{newspk.author}} from {{newspk.locations}} @{{newspk.timestamp}}</p>
@@ -19,22 +23,25 @@
 
             {% csrf_token %}
             <div class="container">
-                <input class="form-control" name="comment" placeholder="add your comments" rows="2" cols="1">
+                <input type="text" class="form-control" name="comment" placeholder="add your comments" rows="2" cols="1">
+                <input type="hidden" name="postsno" value="{{newspk.id}}">
+                <input type="hidden" name="parentSno" value="">
                 <button type="submit" class="btn btn-outline-success my-2">add comment</button>
             </div>
+           
 
         </form>
-        <h6><U>Previous Comments : </U></h6>
+        <!-- <h6><U>Previous Comments : </U></h6> -->
         {% for comment in comments %}
         <div class="container">
 
             <div class="row my-3">
                 <p><b>{{comment.writer}} </b><span
                         class="badge bg-secondary text-light">{{comment.timestamp|naturaltime}}</span> </p>
-                <div class="">
+                
                     <p>{{comment.comment}}</p>
-                </div>
-                <div class="reply mx-0">
+                
+                <div class="replybox mx-0">
                     <p>
 
                         <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="collapse"
@@ -49,15 +56,26 @@
 
                                 {% csrf_token %}
                                 <div class="container">
-                                    <input class="form-control" name="comment" placeholder="add your comments" rows="2" cols="1">
-                                    <input type="hidden" name="id" value="{{comment.id}}">
-                                    <button type="submit" class="btn btn-outline-success my-2">add comment</button>
+                                    <input type="text" class="form-control" name="comment" placeholder="add your comments" rows="2" cols="1">
+                                    <input type="hidden" name="parentSno" value="{{comment.id}}">
+                                    <input type="hidden" name="" value="{{newspk.id}}">
+                                    <button type="submit" class="btn btn-outline-success my-2">comment</button>
                                 </div>
-                    
+                               
                             </form>
                         </div>
                     </div>
-                   
+                    <div class="replies mx-4 my-1">
+
+                       
+                        {% for reply in replyDict|get_val:comment.id %}
+                            <p><b>{{reply.writer}} </b><span
+                                class="badge bg-secondary text-light">{{comment.timestamp|naturaltime}}</span></p>
+                            {{reply.comment}}
+                        {% endfor %}
+
+                            <hr>
+                    </div>
                 </div>
                 </div>
             </div>

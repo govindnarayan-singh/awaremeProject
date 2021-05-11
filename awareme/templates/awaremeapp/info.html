@@ -7,29 +7,18 @@
     <thead>
 <tr>
     <th>view profile</th>
+    <th>name</th>
 </tr>
 </thead>
 
 {% for i in model %}
 <tr>
     <td><a href="{% url 'org_profile' i.id %}">view profile</a></td>
+    <td>{{i.user}}</td>
 </tr>
 {% endfor %}
 
 
-</table>
-
-<table>
-    <thead>
-<tr>
-    <th>name of organisation</th>
-</tr>
-</thead>
-{% for i in userList %}
-<tr>
-    <td>{{i.first_name}}</td>
-</tr>
-{% endfor %}
 </table>
 
 {% endblock %}

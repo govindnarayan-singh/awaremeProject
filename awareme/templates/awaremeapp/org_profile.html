@@ -1,16 +1,41 @@
 {% extends 'awaremeapp/orgbase.html' %}
 {% block content %}
 
-
+<!-- <div class="container">
+    <p></p>
 <h1>{{ orgPk.name }}</h1>
+
+
+<p>Contact us: {{ orgPk.Contact }} </p>
 <hr>
-<img src="{{request.user.orgdetail.profile_pic.url}}" alt="not found" class="img-thumbnail">
-<p>Contact us: {{ orgPk.Contact }} our website: {{ orgPk.portfolio }}</p>
+<p>our website: {{ orgPk.portfolio }}</p>
 <hr>
-<p>{{ orgPk.mission }}</p>
+<p>our mission: {{ orgPk.mission }}</p>
 
 
+</div> -->
+<div class="container jumbotron .text-* ">
 
+    <div class="card" style="width: 75rem;">
+        <div class="card-body">
+            <!-- {% for group in request.user.groups.all %}
+            {% if group.name == 'NGO' %}
+            <p>profile photo :</p>
+            <img src="{{request.user.orgdetail.profile_pic.url}}" alt="not found" class="img-thumbnail">
+            {%endif%}
+            {%endfor%} -->
+
+            <h5 class="card-title">{{ orgPk.user }}</h5>
+            <p></p>
+            <h6 class="card-subtitle mb-2 text-muted">contact us : {{ orgPk.Contact }} </h6>
+            <p> </p>
+            <p class="card-text"><b> Mission of our organisation:</b> {{ orgPk.mission }}</p>
+            <p></p>
+            <p>our page: <a href="#" class="card-link">{{ orgPk.portfolio }}</a></p>
+
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}

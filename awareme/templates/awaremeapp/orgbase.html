@@ -39,20 +39,25 @@
                   <li class="nav-item">
                     <a class="nav-link {% block organistionactive %} {% endblock organistionactive %}" aria-current="page" href="{% url 'details' %}">Organisations</a>
                   </li>
+                  {% for group in request.user.groups.all %}
+                  {% if group.name == 'NGO' %}
               <li class="nav-item me-auto mb-2 mb-lg-0">
                 <a class="nav-link" href="{% url 'feed' %}">Create News</a>
               </li>
               <li class="nav-item ">
                 <a class="nav-link {% block settingactive %} {% endblock settingactive %}" href="{% url 'account_setting' %}">account settings</a>
               </li>
+              {%endif%}
+              {%endfor%}
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page">hello,{{request.user}}</a>
                   </li>
+                 
                   <form class="d-flex" method="GET" action="{% url 'search' %}">
                     {% csrf_token %}
-                    <input class="form-control me-4 mx-4" type="search" placeholder="Search" name="query" id="query" aria-label="Search">
+                    <input class="form-control me-2 mx-2" type="search" placeholder="Search" name="query" id="query" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
               {% if user.is_authenticated %}
@@ -65,6 +70,7 @@
               </li>
               {% endif %}
           </div>
+        
         </div>
       </nav>
     

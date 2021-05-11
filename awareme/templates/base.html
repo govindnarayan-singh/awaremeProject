@@ -35,13 +35,25 @@
               <li class="nav-item ">
                 <a class="nav-link {% block contactactive %} {% endblock contactactive %} " aria-current="page" style="text-align: center;"  href="/contact">Contact</a>
               </li>
+              <li class="nav-item ">
+                <a class="nav-link {% block useractive %} {% endblock useractive %} " aria-current="page" style="text-align: center;"  href="{% url 'userhome' %}">User page</a>
+              </li>
+
+              <!-- creating navbar items -->
+
+              <li class="nav-item ">
+                <a class="nav-link {% block urlactive %} {% endblock urlactive %} " aria-current="page" style="text-align: center;"  href="{% block url %} {% endblock url %}">{% block urlname %} {% endblock urlname %}</a>
+              </li>
+
+              <!-- ------- -->
+
               {% if user.is_authenticated %}
               <li class="nav-item ">
-                <a class="nav-link {% block logoutactive %} {% endblock logoutactive %}" href="{% url 'logout' %}" style="text-align: center;">logout</a>
+                <a class="nav-link {% block logoutactive %} {% endblock logoutactive %}" href="{% url 'logout' %}" style="text-align: center;">Logout</a>
               </li>
               {% else %}
               <li class="nav-item  ">
-                <a class="nav-link {% block loginactive %} {% endblock loginactive %}" href="{% url 'login' %}" >login</a>
+                <a class="nav-link {% block loginactive %} {% endblock loginactive %}" href="{% url 'login' %}" >Login</a>
               </li>
               {% endif %}
           </div>

@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'awaremeapp.apps.AwaremeappConfig',
     'home.apps.HomeConfig',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'useram.apps.UseramConfig'
 ]
 
 MIDDLEWARE = [

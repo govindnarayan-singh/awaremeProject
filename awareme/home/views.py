@@ -6,6 +6,15 @@ from django.contrib import messages
 def home(request):
     return render(request,'home/home.html')
 
+def homeexp(request):
+    return render(request,'home/homeexp.html')
+
+def aboutus(request):
+    return render(request,'home/aboutus.html')
+
+def homeorg(request):
+    return render(request,'home/homeorg.html')
+
 def ContactUs(request):
     
     if request.method=="POST":

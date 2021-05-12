@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block urlactive %} active {% endblock urlactive %}
+{% block url %}
+    {% url 'homeorg' %}
+{% endblock url %}
+    
+
+{% block urlname %}
+    Organisation sign up
+{% endblock urlname %}
+
+{% block content %}
+<div style="text-align:center;">
+    <h1>Welcome to Aware Me</h1>
+    <p>Go and register your organization</p>
+    <a href="{% url 'register' %}">REGISTER</a>
+    <p></p>
+    </div>
+{% endblock content %}
+    

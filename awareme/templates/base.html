@@ -29,7 +29,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 " style="margin-left:30px">
+        <ul class="navbar-nav mr-auto " style="margin-left:30px">
           <li class="nav-item ">
             <a class="nav-link {% block homeactive %} {% endblock homeactive %}"  aria-current="page" href="/">Home</a>
           </li>
@@ -44,6 +44,7 @@
             <a class="nav-link {% block contactactive %} {% endblock contactactive %} " aria-current="page"
               href="/contact">Contact</a>
           </li>
+          
 
           <li class="nav-item ">
             <a class="nav-link {% block useractive %} {% endblock useractive %} " aria-current="page"
@@ -64,18 +65,18 @@
           </li>
 
           <!-- ------- -->
-
+          </ul>
+          <div>
           {% if user.is_authenticated %}
-          <li class="nav-item ">
-            <a class="nav-link {% block logoutactive %} {% endblock logoutactive %}"
-              href="{% url 'logout' %}">Logout</a>
-          </li>
+          
+            <a class="btn btn-danger mb-lg-1" href="{% url 'logout' %}">Logout</a>
+          
           {% else %}
-          <li class="nav-item  ">
-            <a class="nav-link {% block loginactive %} {% endblock loginactive %}" href="{% url 'login' %}">Login</a>
-          </li>
+          
+            <a  class="btn btn-danger" href="{% url 'login' %}">Login</a>
+          
           {% endif %}
-        </ul>
+        </div>
 
       </div>
     </div>

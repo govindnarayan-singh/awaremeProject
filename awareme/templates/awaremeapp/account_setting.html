@@ -2,22 +2,23 @@
 {% load static %}
 {% block settingactive %} active {% endblock settingactive %}
 {% block content %}
-<h1>Account settings</h1>
-<p>hello,{{request.user}}</p>
+<div class="container">
+<h1>Settings</h1>
+
 <form method="POST" enctype="multipart/form-data">
     <!-- <img src="{{request.user.orgdetail.profile_pic.url}}" alt="not found" class="img-thumbnail"> -->
 {% csrf_token %}
-{{form.mission.label}}
-<br>
+<h5>{{form.mission.label}}</h5>
 {{form.mission}}
 <br>
-{{form.Contact.label}}
+<h5>{{form.Contact.label}}</h5>
 {{form.Contact}}
 <br>
-{{form.portfolio.label}}
+<h5>{{form.portfolio.label}}</h5>
 {{form.portfolio}}
 <br>
 <!-- {{form.profile_pic}} -->
 <input type="submit" value="submit">
 </form>
+</div>
 {% endblock %}

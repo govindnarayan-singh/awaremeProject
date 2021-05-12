@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group,User
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
@@ -13,27 +13,42 @@ from awaremeapp.templatetags import extras
 #Authentication APIs
 @unauthenticated_user 
 def orgRegister(request):
-    form1=OrgUser()
-    
-    if request.method =='POST':
-        form1=OrgUser(request.POST)
 
-        if form1.is_valid():
-            user=form1.save()
+    if request.method == 'POST':
+
+        username=request.POST['username']
+        fname=request.POST['fname']
+        email=request.POST['email']
+        pass1=request.POST['pass1']
+        pass2=request.POST['pass2']
+
+        if len(username)>10:
+            messages.error(request,"username should be less than 10 characters")
+            return redirect('usersignup')
+
+        if not username.isalnum():
+            messages.error(request,"username should only contain letters and numbers ")
+            return redirect('usersignup')
         
+        if pass1!=pass2:
+            messages.error(request,"password doesn't match ")
+            return redirect('usersignup')
 
+        else:
+            myuser=User.objects.create_user(username, email, pass1)
+            myuser.first_name=fname
+            myuser.save()
+            messages.success(request,"sign up successfull")
+        
             group = Group.objects.get(name='NGO')
-            user.groups.add(group)
+            myuser.groups.add(group)
 
-            username = form1.cleaned_data.get('username')
+            
             messages.success(request,'account created successfully with username as ' + username)
             return redirect('mission')
-        else:
-            print("error!")
+       
     else:
-        form1=OrgUser()
-        form=Organisation()
-    return render(request,'awaremeapp/registration.html',{'form1':form1,'form':form})
+        return render(request,'awaremeapp/registration.html')
 
 @unauthenticated_user
 def mission(request):

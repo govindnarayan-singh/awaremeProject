@@ -8,7 +8,7 @@ class OrgDetail(models.Model):
     mission=models.TextField(blank=True,null=True)
     Contact=models.CharField(max_length=15,null=True)
     portfolio=models.URLField(blank=True,null=True)
-    profile_pic=models.ImageField(upload_to='awareme\static\images',default='default.png',null=True)
+    # profile_pic=models.ImageField(upload_to='awareme\static\images',default='default.png',null=True)
     
     def __str__(self):
         return str(self.user)

@@ -25,37 +25,38 @@
               <li class="nav-item ">
                 <a class="nav-link {% block homeactive %} {% endblock homeactive %}" aria-current="page" href="/">Home</a>
               </li>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          
+            
               <li class="nav-item ">
                 <a class="nav-link {% block aboutactive %} {% endblock aboutactive %}" aria-current="page" href="/">About us</a>
               </li>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ">
+            
               <li class="nav-item ">
-                <a class="nav-link {% block contactactive %} {% endblock contactactive %} " aria-current="page" style="text-align: center;"  href="/contact">Contact</a>
+                <a class="nav-link {% block contactactive %} {% endblock contactactive %} " aria-current="page"   href="/contact">Contact</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link {% block useractive %} {% endblock useractive %} " aria-current="page" style="text-align: center;"  href="{% url 'userhome' %}">User page</a>
+                <a class="nav-link {% block useractive %} {% endblock useractive %} " aria-current="page"   href="{% url 'userhome' %}">User page</a>
               </li>
 
               <!-- creating navbar items -->
 
               <li class="nav-item ">
-                <a class="nav-link {% block urlactive %} {% endblock urlactive %} " aria-current="page" style="text-align: center;"  href="{% block url %} {% endblock url %}">{% block urlname %} {% endblock urlname %}</a>
+                <a class="nav-link {% block urlactive %} {% endblock urlactive %} " aria-current="page"  href="{% block url %} {% endblock url %}">{% block urlname %} {% endblock urlname %}</a>
               </li>
 
               <!-- ------- -->
 
               {% if user.is_authenticated %}
               <li class="nav-item ">
-                <a class="nav-link {% block logoutactive %} {% endblock logoutactive %}" href="{% url 'logout' %}" style="text-align: center;">Logout</a>
+                <a class="nav-link {% block logoutactive %} {% endblock logoutactive %}" href="{% url 'logout' %}" >Logout</a>
               </li>
               {% else %}
               <li class="nav-item  ">
                 <a class="nav-link {% block loginactive %} {% endblock loginactive %}" href="{% url 'login' %}" >Login</a>
               </li>
               {% endif %}
+              </ul>
+            
           </div>
         </div>
       </nav>

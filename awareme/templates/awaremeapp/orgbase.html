@@ -15,11 +15,11 @@
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top "  >
         <div class="container-fluid">
-          <a class="navbar-brand mx-10 ml-5 mr-5" href="{% url 'listFeed'%}">AwareMe</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand mx-10 ml-5 mr-5" style="margin-left:10px;" href="{% url 'listFeed'%}">AwareMe</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left:50px;">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link {% block homeactive %} {% endblock homeactive %}" aria-current="page" href="{% url 'listFeed'%}">Home</a>
@@ -29,19 +29,17 @@
               <li class="nav-item">
                 <a class="nav-link {% block aboutactive %} {% endblock aboutactive %}" aria-current="page" href="{% url 'listFeed'%}">About us</a>
               </li>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
               <li class="nav-item">
                 <a class="nav-link {% block contactactive %} {% endblock contactactive %}" aria-current="page" href="{% url 'contact' %}">Contact</a>
               </li>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
                   <li class="nav-item">
                     <a class="nav-link {% block organistionactive %} {% endblock organistionactive %}" aria-current="page" href="{% url 'details' %}">Organisations</a>
                   </li>
                   {% for group in request.user.groups.all %}
                   {% if group.name == 'NGO' %}
-              <li class="nav-item me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'feed' %}">Create News</a>
               </li>
               <li class="nav-item ">
@@ -49,15 +47,14 @@
               </li>
               {%endif%}
               {%endfor%}
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page">hello,{{request.user}}</a>
                   </li>
                  
                   <form class="d-flex" method="GET" action="{% url 'search' %}">
                     {% csrf_token %}
-                    <input class="form-control me-2 mx-2" type="search" placeholder="Search" name="query" id="query" aria-label="Search">
+                    <input class="form-control me-2 mx-0" type="search" placeholder="Search" name="query" id="query" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
               {% if user.is_authenticated %}

@@ -211,7 +211,7 @@ def search(request):
         feedcontent=OrgFeed.objects.filter(brief__icontains=query)
         feed2=feedtitle.union(feedcontent)
         feedlocation=OrgFeed.objects.filter(locations__icontains=query)
-        feedlocation=OrgFeed.objects.filter(author__icontains=query)
+        # feedlocation=OrgFeed.objects.filter(author__icontains=query)
         feed3=feed2.union(feedlocation)
         feed=feed3.union(feed3)
 

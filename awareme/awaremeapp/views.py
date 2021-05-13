@@ -24,15 +24,15 @@ def orgRegister(request):
 
         if len(username)>10:
             messages.error(request,"username should be less than 10 characters")
-            return redirect('usersignup')
+            return redirect('register')
 
         if not username.isalnum():
             messages.error(request,"username should only contain letters and numbers ")
-            return redirect('usersignup')
+            return redirect('register')
         
         if pass1!=pass2:
             messages.error(request,"password doesn't match ")
-            return redirect('usersignup')
+            return redirect('register')
 
         else:
             myuser=User.objects.create_user(username, email, pass1)

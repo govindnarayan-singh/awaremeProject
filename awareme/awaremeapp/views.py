@@ -88,6 +88,7 @@ def orgList(request):
     Instance=Instance1.union(userList,all=True)
     return render(request,'awaremeapp/info.html',{'model':Instance1,'userList':userList})
 
+
 @login_required(login_url='login')
 def org_profile(request,pk_value):
     orgPk=OrgDetail.objects.get(id=pk_value)
@@ -95,7 +96,9 @@ def org_profile(request,pk_value):
     context={'orgInfo':orgInfo,'orgPk':orgPk}
     return render(request,'awaremeapp/org_profile.html',context)
 
+
 @login_required(login_url='login')
+@allowed_user(allowed_roles=['admin','NGO'])
 def createFeed(request):
     form=Formfeed()
     if request.method=='POST':
@@ -106,11 +109,13 @@ def createFeed(request):
     context={'form':form}
     return render(request,'awaremeapp/feed_form.html',context)
 
+
 @login_required(login_url='login')
 def listFeed(request):
     feed=OrgFeed.objects.all()
     context={'feed':feed,}
     return render(request,'awaremeapp/list_feed.html',context)
+
 
 @login_required(login_url='login')
 def newsFeed(request,pk):
@@ -131,6 +136,7 @@ def newsFeed(request,pk):
     context={'newspk':newspk,'comments':comments,'count':count,'replyDict':replyDict}
     return render(request,'awaremeapp/news_feed.html',context)
 
+
 @allowed_user(allowed_roles=['admin','NGO'])
 @login_required(login_url='login')
 def updateFeed(request,pk):
@@ -144,6 +150,7 @@ def updateFeed(request,pk):
     context={'form':form}
     return render(request,'awaremeapp/feed_form.html',context)
 
+
 @allowed_user(allowed_roles=['admin','NGO'])
 @login_required(login_url='login')
 def deleteFeed(request,pk):
@@ -154,6 +161,7 @@ def deleteFeed(request,pk):
     
     context={'dlnewspk':dlnewspk}
     return render(request,'awaremeapp/delete_feed.html',context)
+
 
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin','NGO'])
@@ -167,6 +175,7 @@ def account_set(request):
             return redirect('listFeed')
     context={'form':form}
     return render(request,'awaremeapp/account_setting.html',context)
+
 
 @login_required(login_url='login')
 def postComment(request,pk):

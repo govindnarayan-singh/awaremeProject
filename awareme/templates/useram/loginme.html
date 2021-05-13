@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 
 {% block urlactive %} active {% endblock urlactive %}
+{% block url %}
+    {% url 'usersignup' %}
+{% endblock url %}
+    
 
+{% block urlname %}
+    User sign up
+{% endblock urlname %}
 
 {% block content %}
     <div class="container" style="left: 450px;"  >

@@ -11,7 +11,7 @@
         <li><h5><a class="text-dark" href="{% url 'newsFeed' feeds.id %}">{{feeds.title}}</a></h5></li>
         <p>author--{{feeds.author}}<br>
         {{feeds.brief|truncatechars:500}}
-        <a class="btn btn-primary" href="{% url 'newsFeed' feeds.id %}">read full</a></p>
+        <a class="btn btn-primary" href="{% url 'newsFeed' feeds.id %}">continue reading</a></p>
     {% endfor %}
 </ol>
 </div>

@@ -112,7 +112,7 @@ def createFeed(request):
 
 @login_required(login_url='login')
 def listFeed(request):
-    feed=OrgFeed.objects.all()
+    feed=OrgFeed.objects.all().order_by('-id')
     context={'feed':feed,}
     return render(request,'awaremeapp/list_feed.html',context)
 

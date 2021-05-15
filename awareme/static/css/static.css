@@ -1,3 +1,4 @@
+
 #navflex{
   display: flex;
   flex-wrap: wrap;
@@ -5,22 +6,38 @@
 }
 #font{
   font-family: 'Lobster', cursive;
-  font-size: 8vh;
-  margin-left: 5px;
+  font-size: 5vh;
+  margin-left: 10px;
+  color: silver;
 }
 .size{
-  font-size: 20px;
+  font-size: 17px;
+
 }
+.targ{
+    position: relative;
+    bottom: 0vh;
+right:30vw;
+}
+
 .inout {
     position: relative;
     left: 55vw;
   
 }
+.wid{
+    width:30vw;
+}
 .inoutlog {
     position: relative;
     left:15vw;
-    bottom: 10vh;
+    bottom: 6vh;
 }
+.tog{
+    position: relative;
+    left: 31vw;
+}
+
 @media only screen and (max-width:900px) {
     .inoutlog {
        margin: 2px 1px;
@@ -28,5 +45,36 @@
         left:-3vw;
         bottom: 0vh;
        width:-moz-fit-content;
+    }
+    .inout {
+        position: relative;
+        left: 3vw;
+      
+    }
+    
+}
+@media only screen and (min-width:700px){
+    .tog{
+        position: relative;
+        left: 58vw;
+    }
+}
+
+.backg{
+    background:rgb(238, 238, 238);
+}
+
+@media only screen and (max-width:1300px) {
+    .inoutlog {
+       margin: 2px 1px;
+        position: relative;
+        left:-3vw;
+        bottom: 0vh;
+       width:-moz-fit-content;
+    }
+    .inout {
+        position: relative;
+        left: 42vw;
+      
     }
 }

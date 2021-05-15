@@ -9,37 +9,44 @@
   <!-- linking bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ"
     crossorigin="anonymous"></script>
 
+  <link rel="stylesheet" href="{% static '/css/static.css' %}">
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+
   <title> {% block title %} {% endblock title %}</title>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
-    <div class="container-fluid">
-      <a class="navbar-brand " style="margin-left:10px;" href="{% url 'listFeed' %}">AwareMe</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navflex ">
+    <div class="sticky-top">
+    <a class="navbar-brand" id="font" style="margin-left:10px;" href="{% url 'listFeed' %}">AwareMe</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
       <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left:50px;">
         <ul class="navbar-nav me-0 mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link {% block homeactive %} {% endblock homeactive %}" aria-current="page"
+            <a class="nav-link size {% block homeactive %} {% endblock homeactive %}" aria-current="page"
               href="{% url 'listFeed'%}">Home</a>
 
           </li>
 
 
           <li class="nav-item">
-            <a class="nav-link {% block aboutactive %} {% endblock aboutactive %}" aria-current="page"
+            <a class="nav-link size {% block aboutactive %} {% endblock aboutactive %}" aria-current="page"
               href="{% url 'aboutus' %}">About us<a>
 
           </li>
@@ -47,56 +54,56 @@
 
 
           <li class="nav-item">
-            <a class="nav-link {% block contactactive %} {% endblock contactactive %}" aria-current="page"
+            <a class="nav-link size {% block contactactive %} {% endblock contactactive %}" aria-current="page"
               href="{% url 'contact' %}">Contact</a>
 
           </li>
 
           <li class="nav-item">
-            <a class="nav-link {% block organistionactive %} {% endblock organistionactive %}" aria-current="page"
+            <a class="nav-link size {% block organistionactive %} {% endblock organistionactive %}" aria-current="page"
               href="{% url 'details' %}">Organisations</a>
           </li>
           {% for group in request.user.groups.all %}
           {% if group.name == 'NGO' %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'feed' %}">Create News</a>
+            <a class="nav-link size" href="{% url 'feed' %}">Create News</a>
 
           </li>
           <li class="nav-item ">
-            <a class="nav-link {% block settingactive %} {% endblock settingactive %}"
+            <a class="nav-link size {% block settingactive %} {% endblock settingactive %}"
               href="{% url 'account_setting' %}">account settings</a>
 
           </li>
           {%endif%}
           {%endfor%}
-        
-          <li class="nav-item "> 
-            <a class="nav-link active" aria-current="page">hello,{{request.user}}</a>
+
+          <li class="nav-item ">
+            <a class="nav-link size active" aria-current="page">hello,{{request.user}}</a>
           </li>
-          </ul>
+        </ul>
+        
+        <form class="d-flex" method="GET" action="{% url 'search' %}">
+          {% csrf_token %}
+          <input class="form-control inoutlog " type="search" placeholder="Search" name="query" id="query"
+            aria-label="Search">
+          <button class="btn btn-outline-success size mx-1 inoutlog" type="submit">Search</button>
 
-          <form class="d-flex" method="GET" action="{% url 'search' %}">
-            {% csrf_token %}
-            <input class="form-control mx-1 " type="search" placeholder="Search" name="query" id="query"
-              aria-label="Search">
-            <button class="btn btn-outline-success mx-1" type="submit">Search</button>
+        </form>
+        <div>
+          {% if user.is_authenticated %}
 
-          </form>
-          <div>
-            {% if user.is_authenticated %}
-            
-              <a class="btn btn-danger me-2 my-2 " href="{% url 'logout' %}">Logout</a>
-            
-            {% else %}
-            
-              <a  class="btn btn-danger" href="{% url 'login' %}">Login</a>
-            
-            {% endif %}
-          </div>
-  
+          <a class="btn btn-danger size inoutlog " href="{% url 'logout' %}">Logout</a>
+
+          {% else %}
+
+          <a class="btn btn-danger size inoutlog" href="{% url 'login' %}">Login</a>
+
+          {% endif %}
+        </div>
+
       </div>
-
     </div>
+
 
   </nav>
 

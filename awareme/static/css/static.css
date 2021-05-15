@@ -1,17 +1,32 @@
-
 #navflex{
   display: flex;
   flex-wrap: wrap;
+  margin-left: 10px;
 }
- #font{
+#font{
   font-family: 'Lobster', cursive;
-  font-size: 10vh;
+  font-size: 8vh;
+  margin-left: 5px;
 }
 .size{
-  font-size: 17px;
+  font-size: 20px;
 }
 .inout {
-  position: relative;
-  left: 45vw;
+    position: relative;
+    left: 55vw;
   
+}
+.inoutlog {
+    position: relative;
+    left:15vw;
+    bottom: 10vh;
+}
+@media only screen and (max-width:900px) {
+    .inoutlog {
+       margin: 2px 1px;
+        position: relative;
+        left:-3vw;
+        bottom: 0vh;
+       width:-moz-fit-content;
+    }
 }

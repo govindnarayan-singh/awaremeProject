@@ -5,11 +5,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 #user home page
+
+
 def userhome(request):
-    return render(request, 'useram/userhome.html')
-
-
-def usersignup(request):
 
     if request.method == 'POST':
 
@@ -22,15 +20,15 @@ def usersignup(request):
 
         if len(username)>10:
             messages.error(request,"username should be less than 10 characters")
-            return redirect('usersignup')
+            return redirect('userhome')
 
         if not username.isalnum():
             messages.error(request,"username should only contain letters and numbers ")
-            return redirect('usersignup')
+            return redirect('userhome')
         
         if pass1!=pass2:
             messages.error(request,"password doesn't match ")
-            return redirect('usersignup')
+            return redirect('userhome')
 
         else:
             myuser=User.objects.create_user(username, email, pass1)
@@ -44,5 +42,5 @@ def usersignup(request):
 
 
     else:
-        return render(request,'useram/loginme.html')
+        return render(request,'useram/userhome.html')
         

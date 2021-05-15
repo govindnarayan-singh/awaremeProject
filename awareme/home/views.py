@@ -6,9 +6,6 @@ from django.contrib import messages
 def home(request):
     return render(request,'home/home.html')
 
-def homeexp(request):
-    return render(request,'home/homeexp.html')
-
 def aboutus(request):
     return render(request,'home/aboutus.html')
 

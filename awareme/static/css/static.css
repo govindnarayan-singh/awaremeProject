@@ -1,0 +1,17 @@
+
+#navflex{
+  display: flex;
+  flex-wrap: wrap;
+}
+ #font{
+  font-family: 'Lobster', cursive;
+  font-size: 10vh;
+}
+.size{
+  font-size: 17px;
+}
+.inout {
+  position: relative;
+  left: 45vw;
+  
+}

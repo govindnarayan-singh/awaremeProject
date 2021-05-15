@@ -3,23 +3,42 @@
 
 {% block useractive %} active {% endblock useractive %}
 
-{% block url %}
-    {% url 'usersignup' %}
-{% endblock url %}
-    
-
-{% block urlname %}
-    User sign up
-{% endblock urlname %}
     
 {% block content %}
-<div class="container">
-
-    <p>welcome note for user</p>
-
-</div>
-
-
-
-{% endblock  %}
+    <div class="container" style="left: 450px;"  >
+      <form  method="POST">
+           
+        {% csrf_token %}
+        
+        <div class="form-floating mb-3">
+          <input type="text" style="max-width: 300px;"class="form-control" id="floatingInput" name="username" placeholder="username" required>
+          <label for="floatingInput">username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" style="max-width: 300px" class="form-control" id="floatingInput" name="fname" placeholder="first name"required>
+          <label for="floatingInput">first name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" style="max-width: 300px" class="form-control" id="floatingInput" name="lname" placeholder="last name"required>
+          <label for="floatingInput">last name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" style="max-width: 300px" class="form-control" id="floatingInput" name="email" placeholder="name@example.com"required>
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control"style="max-width: 300px" id="floatingInput" name="pass1" placeholder="password"required>
+          <label for="floatingInput">password</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="floatingInput" name="pass2" style="max-width: 300px" placeholder="password2"required>
+          <label for="floatingInput"> re-enter password </label>
+        </div>
+       
+        <input type="submit" name="submit" class="btn btn-primary" value="submit">
+      
+      </form>
+    </div>
+{% endblock content %}
+    
     

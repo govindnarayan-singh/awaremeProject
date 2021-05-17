@@ -64,7 +64,7 @@ def mission(request):
 @login_required(login_url='login')
 def user_logout(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 @unauthenticated_user 
 def user_login(request):
@@ -110,7 +110,7 @@ def createFeed(request):
     return render(request,'awaremeapp/feed_form.html',context)
 
 
-@login_required(login_url='login')
+
 def listFeed(request):
     feed=OrgFeed.objects.all().order_by('-id')
     context={'feed':feed,}

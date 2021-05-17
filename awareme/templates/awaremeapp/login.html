@@ -8,27 +8,27 @@ login page
 
 {% block content %}
 <div class="container backg" style="display: flex;
-justify-content: center;top: 20vh;padding: 10px; position: relative;">
+justify-content: center;top: 9vh;padding: 10px; position: relative;">
   <form action="{% url 'login' %}" method='POST'>
     {% csrf_token %}
     <div class="mb-3">
-      <label for="usernamew" class="form-label">Username</label>
+      <label for="usernamew" class="form-label" style="font-weight: bold;">Username</label>
       <input type="text" style="width: 500px;" id="usernamew" class="form-control" name="username">
     </div>
     <div class="mb-3">
-      <label for="pass" class="form-label">Password</label>
+      <label for="pass" class="form-label" style="font-weight: bold;">Password</label>
       <input type="password" class="form-control" id="pass" name="password">
     </div>
     <button type="submit" class="btn btn-primary"
-      style="background-color: rgb(162, 234, 247);color:black">Submit</button>
-    <p style="background-color: red;margin-top: 10px;padding: 5px;color: blanchedalmond;">don't have an account?,create
+      style="background-color: rgb(162, 234, 247);color:black;font-weight: bold;">log in</button>
+    <p style="background-color: red;margin-top: 10px;padding: 3px;color: blanchedalmond;font-size: 20px;">don't have an account?,create
       one here ?</p>
     <p> <a
-        style="text-decoration: none;margin-top: 10px;padding: 5px;background-color: rgb(41, 209, 153);color: rgb(253, 228, 191);"
+        style="text-decoration: none;margin-top: 10px;padding: 5px;background-color: rgb(41, 209, 153);color: rgb(253, 228, 191);font-size: 18px;"
         href="{% url 'register' %}">Organisation sign up</a></p>
 
     <p> <a
-        style="text-decoration: none;margin-top: 10px;padding: 5px;background-color: rgb(41, 209, 153);color: blanchedalmond;"
+        style="text-decoration: none;margin-top: 10px;padding: 5px;background-color: rgb(41, 209, 153);color: blanchedalmond;font-size: 18px;"
         href="{% url 'userhome' %}">User sign up</a></p>
   </form>
 

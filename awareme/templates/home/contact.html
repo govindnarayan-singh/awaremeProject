@@ -9,34 +9,34 @@ Contact
 {% block content %}
 <div class="container backg" >
   <br>
-  <h2>Hi,there!</h2>
+  <h2 style="color: rgb(251, 255, 0);font-size:45px">Hi,there!</h2>
   <hr>
   <form action="/contact" method="POST">
     {% csrf_token %}
     <div class="mb-3">
-      <label for="name" class="form-label">Name :</label>
+      <label for="name" class="form-label" style="font-weight: bold;">Name :</label>
       <input type="text" class="form-control" name="name" id="name">
     </div>
 
     <div class="mb-3">
-      <label for="emailadd" class="form-label">Email :</label>
+      <label for="emailadd" class="form-label" style="font-weight: bold;">Email :</label>
       <input type="email" class="form-control" name="email" id="emailadd" placeholder="@">
     </div>
 
     <div class="mb-3">
-      <label for="num" class="form-label">Contact Number :</label>
+      <label for="num" class="form-label" style="font-weight: bold;">Contact Number :</label>
       <input type="text" class="form-control" name="number" id="num" >
     </div>
 
     <div class="mb-3">
-      <label for="descrip" class="form-label">Brief :</label>
+      <label for="descrip" class="form-label" style="font-weight: bold;">Brief :</label>
       <textarea class="form-control" id="descrip" name="textbox" rows="3" placeholder="how we can help you .."></textarea>
     </div>
     <div class="posi">
       <input type="submit" class="btn btn-warning " style="position: relative;
     left:25vw;
     border-radius: 20px;
-    width:30vw; margin-top: 5px; margin-bottom: 12px;color: #00000082;background-color: rgb(250, 255, 175);font-size: 20px;" value="send">
+    width:30vw; margin-top: 5px; margin-bottom: 12px;color: #00000082;background-color: rgb(250, 255, 175);font-size: 20px;font-weight: bold;" value="contact">
     </div>
   </form>
 

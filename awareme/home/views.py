@@ -1,16 +1,20 @@
 from django.shortcuts import render,HttpResponse
 from .models import *
+from awaremeapp.models import OrgFeed
 from django.contrib import messages
 
 #default page
+
 def home(request):
-    return render(request,'home/home.html')
+    feed=OrgFeed.objects.all().order_by('-id')
+    context={'feed':feed,}
+    return render(request,'home/home.html',context)
 
 def aboutus(request):
     return render(request,'home/aboutus.html')
 
-def homeorg(request):
-    return render(request,'home/homeorg.html')
+# def homeorg(request):
+#     return render(request,'home/homeorg.html')
 
 def ContactUs(request):
     

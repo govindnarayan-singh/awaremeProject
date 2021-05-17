@@ -7,13 +7,14 @@ listed news
 {% block content %}
 
 <div class="container">
+ 
 
 <br>
 
-<ol >
+<ol style="list-style: none;" >
     {% for feeds in feed %}
-        <li ><h5><a class="text-dark" style="background-color: rgb(255, 229, 190);text-decoration: none;" href="{% url 'newsFeed' feeds.id %}"><b>{{feeds.title}}</b></a></h5></li>
-        <p style="background-color: rgb(206, 245, 227);padding-bottom: 5px;padding-left: 5px;padding-top: 5px;padding-right: 5px;">author - {{feeds.author}}<br>
+        <li ><h5><a class="text-dark" style="background-color: rgba(238, 170, 67, 0.733);text-decoration: none;font-size: 25px;" href="{% url 'newsFeed' feeds.id %}"><b>{{feeds.title}}</b></a></h5></li>
+        <p style="background-color: rgba(206, 245, 227, 0.781);font-weight: bold;font-size: 20px;color:rgb(192, 107, 107);padding-bottom: 5px;padding-left: 5px;padding-top: 5px;padding-right: 5px;">author - {{feeds.author}}<br>
         {{feeds.brief|truncatechars:500}}
         <a class=""style="text-decoration: none;color:black;" href="{% url 'newsFeed' feeds.id %}"><b>continue reading</b></a></p>
     {% endfor %}

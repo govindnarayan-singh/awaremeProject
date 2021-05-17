@@ -5,18 +5,18 @@
 {% load extras %}
 
 <div class="container backg">
-    <h1>{{newspk.title}}</h1>
-    <p><b>editor: </b>{{newspk.author}} from {{newspk.locations}} @{{newspk.timestamp}}</p>
+    <h1 style="color: rgb(75, 0, 75);font-size: 55px;">{{newspk.title}}</h1>
+    <p style="font-weight: bold;color:rgb(238, 250, 65) ; font-size: 18px;"><b>editor: </b>{{newspk.author}} from {{newspk.locations}} @{{newspk.timestamp}}</p>
 
     <hr>
-    <p>{{newspk.brief}}</p>
+    <p style="font-weight: bold;color:rgb(255, 255, 255);font-size: 20px;font-family: sans-serif;">{{newspk.brief}}</p>
     <hr>
-    <div class="backg">
+    <div class="">
         {% for group in request.user.groups.all %}
         {% if group.name == 'NGO' %}
-        <a class="btn btn-light" style="background-color: rgb(225, 182, 104);" href="{% url 'updateFeed' newspk.id %}">update news </a>
+        <a class="btn btn-light" style="background-color: rgb(225, 182, 104);color: white;" href="{% url 'updateFeed' newspk.id %}">update news </a>
 
-        <a class="btn btn-danger" style="background-color: rgba(245, 57, 57, 0.871);" href="{% url 'deleteFeed' newspk.id %}">delete </a>
+        <a class="btn btn-danger" style="background-color: rgba(248, 41, 41, 0.747);" href="{% url 'deleteFeed' newspk.id %}">delete </a>
         <hr>
         {% endif %}
         {% endfor %}
@@ -25,7 +25,7 @@
             <form action="{% url 'postComment' newspk.id %}" method="POST">
 
                 {% csrf_token %}
-                <div class="container backg">
+                <div class="container">
                     <input type="text" class="form-control" name="comment" placeholder="add your comments" rows="2"
                         cols="1">
                     <input type="hidden" name="postsno" value="{{newspk.id}}">

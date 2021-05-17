@@ -2,33 +2,40 @@
 {% block loginactive %} active {% endblock loginactive %}
 
 {% block title %}
-    login page
+login page
 {% endblock title %}
 
 
 {% block content %}
-<div class="" style="display: flex;
-justify-content: center;top: 20vh; position: relative;">
-<form action="{% url 'login' %}" method='POST'>
+<div class="container backg" style="display: flex;
+justify-content: center;top: 20vh;padding: 10px; position: relative;">
+  <form action="{% url 'login' %}" method='POST'>
     {% csrf_token %}
     <div class="mb-3">
-      <label for="usernamew" class="form-label" >Username</label>
-      <input type="text" style="width: 500px;" id="usernamew"class="form-control" name="username">
+      <label for="usernamew" class="form-label">Username</label>
+      <input type="text" style="width: 500px;" id="usernamew" class="form-control" name="username">
     </div>
     <div class="mb-3">
       <label for="pass" class="form-label">Password</label>
-      <input type="password" class="form-control" id="pass" name="password" >
+      <input type="password" class="form-control" id="pass" name="password">
     </div>
-    <button type="submit" class="btn btn-primary" style="background-color: rgb(162, 234, 247);color:black">Submit</button>
-    <p>don't have an account?,create one here </p>
-    <p> <a style="text-decoration: none;" href="{% url 'register' %}">Organisation sign up</a></p>
-    <p> <a style="text-decoration: none;" href="{% url 'userhome' %}">User sign up</a></p>
+    <button type="submit" class="btn btn-primary"
+      style="background-color: rgb(162, 234, 247);color:black">Submit</button>
+    <p style="background-color: red;margin-top: 10px;padding: 5px;color: blanchedalmond;">don't have an account?,create
+      one here ?</p>
+    <p> <a
+        style="text-decoration: none;margin-top: 10px;padding: 5px;background-color: rgb(41, 209, 153);color: rgb(253, 228, 191);"
+        href="{% url 'register' %}">Organisation sign up</a></p>
+
+    <p> <a
+        style="text-decoration: none;margin-top: 10px;padding: 5px;background-color: rgb(41, 209, 153);color: blanchedalmond;"
+        href="{% url 'userhome' %}">User sign up</a></p>
   </form>
 
 
 
 
-</form>
+  </form>
 </div>
 </div>
 {% endblock %}

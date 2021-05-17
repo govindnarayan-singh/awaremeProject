@@ -14,18 +14,18 @@ class mission_register(ModelForm):
         widgets={
             'mission':Textarea(attrs={
                 'class':"form-control",
-                'style':'max-width:300px;max-height:200px',
-                'placeholder':'mission'
+                'style':'max-width:500px;max-height:200px',
+                'placeholder':'organisation motive ...'
             }),
             'Contact':TextInput(attrs={
                 'class':"form-control",
-                'style':'max-width:300px;',
-                'placeholder':'contact'
+                'style':'max-width:500px;',
+                # 'placeholder':'contact'
             }),
             'portfolio':TextInput(attrs={
                 'class':"form-control",
                 'style':'max-width:500px;',
-                'placeholder':'http://example.com'
+                'placeholder':'https://example.com'
             }),
         }
 
@@ -59,23 +59,23 @@ class Formfeed(ModelForm):
         widgets={
             'title':TextInput(attrs={
                 'class':"form-control",
-                'style':'max-width:500px;max-height:200px',
-                'placeholder':'Title'
+                'style':'width:80vw;max-height:200px',
+                # 'placeholder':'Title'
             }),
             'author':TextInput(attrs={
                 'class':"form-control",
-                'style':'max-width:300px;',
-                'placeholder':'Author name'
+                'style':'width:80vw;',
+                # 'placeholder':'Author name'
             }),
             'locations':TextInput(attrs={
                 'class':"form-control",
-                'style':'max-width:300px;',
-                'placeholder':'enter location'
+                'style':'width:80vw;',
+                # 'placeholder':'enter location'
             }),
             'brief':Textarea(attrs={
                 'class':"form-control",
-                'style':'max-width:550px;',
-                'placeholder':'write'
+                'style':'width:80vw;',
+                'placeholder':'article..'
             }),
         }
 

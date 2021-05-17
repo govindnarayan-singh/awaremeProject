@@ -38,6 +38,9 @@ right:30vw;
     left: 31vw;
 }
 
+
+
+
 @media only screen and (max-width:900px) {
     .inoutlog {
        margin: 2px 1px;
@@ -78,3 +81,4 @@ right:30vw;
       
     }
 }
+

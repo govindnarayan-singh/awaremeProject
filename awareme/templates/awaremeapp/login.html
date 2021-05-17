@@ -7,25 +7,24 @@
 
 
 {% block content %}
-<p></p>
-<div class="container">
+<div class="" style="display: flex;
+justify-content: center;top: 20vh; position: relative;">
 <form action="{% url 'login' %}" method='POST'>
     {% csrf_token %}
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label" >Username</label>
-      <input type="text" class="form-control" name="username">
+      <label for="usernamew" class="form-label" >Username</label>
+      <input type="text" style="width: 500px;" id="usernamew"class="form-control" name="username">
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" name="password" >
+      <label for="pass" class="form-label">Password</label>
+      <input type="password" class="form-control" id="pass" name="password" >
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" style="background-color: rgb(162, 234, 247);color:black">Submit</button>
+    <p>don't have an account?,create one here </p>
+    <p> <a style="text-decoration: none;" href="{% url 'register' %}">Organisation sign up</a></p>
+    <p> <a style="text-decoration: none;" href="{% url 'userhome' %}">User sign up</a></p>
   </form>
-{% for message in messages %}
-<b>{{message}}</b>
-{% endfor %}
-<br>
-<p>don't have an account?,create one here <a href="{% url 'register' %}">sign up</a></p>
+
 
 
 

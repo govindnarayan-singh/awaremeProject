@@ -2,11 +2,13 @@
 {% load static %}
 {% block settingactive %} active {% endblock settingactive %}
 {% block content %}
-<div class="container">
-<h1>Settings</h1>
+<div class="container backg" style="display: flex;
+    justify-content: center; ">
 
-<form method="POST" enctype="multipart/form-data">
+
+<form method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
     <!-- <img src="{{request.user.orgdetail.profile_pic.url}}" alt="not found" class="img-thumbnail"> -->
+<ul style="background-color: rgb(1, 255, 255);"><li>here you can update few of your settings </li></ul>
 {% csrf_token %}
 <h5>{{form.mission.label}}</h5>
 {{form.mission}}
@@ -18,7 +20,7 @@
 {{form.portfolio}}
 <br>
 <!-- {{form.profile_pic}} -->
-<input type="submit" value="submit">
+<input type="submit" class="btn btn-success" style="background-color: rgb(186, 204, 23); margin: 10px;" value="submit">
 </form>
 </div>
 {% endblock %}

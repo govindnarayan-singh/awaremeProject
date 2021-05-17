@@ -1,12 +1,21 @@
 {% extends 'awaremeapp/orgbase.html' %}
+{% block newsactive %} active {% endblock newsactive %}
+{% block title %}
+create an article
+{% endblock title %}
 {% block content %}
 
-<div class="container">
+<div class="container backg" style="display: flex;
+    justify-content:left; ">
 <form method='POST'>
+    <p></p>
+    <ul style="background-color: rgb(1, 255, 255);">
+        <li>here you can write an article for Viewers..</li>
+    </ul>
     {% csrf_token %}
     {{form.as_p}}
 
-    <input type="submit" name="submit">
+    <input type="submit" class="btn btn-success" style="background-color: rgb(99, 211, 99);border:12px;border-radius: 10px;" name="submit" value="POST ARTICLE">
 
 </form>
 </div>

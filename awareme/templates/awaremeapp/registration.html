@@ -1,48 +1,49 @@
 {% extends 'base.html' %}
+
+{% block title %}
+Register organisation
+{% endblock title %}
+
 {% block content %}
-    <div class="container">
-      <form  method="POST">
-           
-        {% csrf_token %}
-        
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username" required>
-          <label for="floatingInput">username</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" name="fname" placeholder="first name"required>
-          <label for="floatingInput">name of organisation</label>
-        </div>
-    
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com"required>
-          <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="floatingInput" name="pass1" placeholder="password"required>
-          <label for="floatingInput">password</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="floatingInput" name="pass2" placeholder="password2"required>
-          <label for="floatingInput"> re-enter password </label>
-        </div>
-        <input type="submit" name="submit" class="btn btn-primary" value="submit">
-        
-      </form>
+
+<div class="container backg" style="display: flex;
+    justify-content: center; ">
+  <form method="POST">
+
+    {% csrf_token %}
+    <h2 style="text-align: center;color: rgb(8, 46, 36);margin: 5px;background-color: rgba(192, 192, 189, 0.466);">Sign-Up-Your-Organisation</h2>
+    <div class="form-floating mb-3">
+      <input type="text" style="width: 50vw" class="form-control" id="floatingInput" name="username"
+        placeholder="username" required>
+      <label for="floatingInput" style="color: rgb(167, 175, 173);">username</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" style="width: 50vw" id="floatingInput" name="fname"
+        placeholder="first name" required>
+      <label for="floatingInput" style="color: rgb(167, 175, 173);">name of organisation</label>
     </div>
 
-        <div class="container">
-            <h6>already have an account?,</h6>
-            <footer>
-                {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}">logout</a>
-                {% else %}
-                <a href="{% url 'login' %}">login</a>
-                {% endif %}
-            </footer>
-        </div>
-
-    </form>
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" style="width: 50vw" id="floatingInput" name="email"
+        placeholder="name@example.com" required>
+      <label for="floatingInput" style="color: rgb(167, 175, 173);">Email address</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" style="width: 50vw" id="floatingInput" name="pass1"
+        placeholder="password" required>
+      <label for="floatingInput" style="color: rgb(167, 175, 173);">password</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="floatingInput" style="width: 50vw" name="pass2"
+        placeholder="password2" required>
+      <label for="floatingInput" style="color: rgb(167, 175, 173);"> re-enter password </label>
+    </div>
+    <input type="submit" name="submit" class="btn btn-success" style="position: relative;
+        left:8vw;
+        border-radius: 20px;
+        width:30vw; margin-top: 5px; margin-bottom: 12px;color: #00000082;background-color: rgb(162, 247, 162); padding: 10px;
+    font-size: 1rem;" value="submit">
+  </form>
 </div>
 
 {% endblock %}

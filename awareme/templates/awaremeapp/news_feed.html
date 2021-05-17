@@ -1,45 +1,43 @@
 {% extends 'awaremeapp/orgbase.html' %}
+{% load static %}
 {% block content %}
 {% load humanize %}
 {% load extras %}
-<br>
 
-
-
-<div class="container-fluid">
+<div class="container backg">
     <h1>{{newspk.title}}</h1>
     <p><b>editor: </b>{{newspk.author}} from {{newspk.locations}} @{{newspk.timestamp}}</p>
 
     <hr>
     <p>{{newspk.brief}}</p>
     <hr>
-    <div>
+    <div class="backg">
         {% for group in request.user.groups.all %}
         {% if group.name == 'NGO' %}
-        <a class="btn btn-light" href="{% url 'updateFeed' newspk.id %}">update news </a>
+        <a class="btn btn-light" style="background-color: rgb(225, 182, 104);" href="{% url 'updateFeed' newspk.id %}">update news </a>
 
-        <a class="btn btn-danger" href="{% url 'deleteFeed' newspk.id %}">delete </a>
+        <a class="btn btn-danger" style="background-color: rgba(245, 57, 57, 0.871);" href="{% url 'deleteFeed' newspk.id %}">delete </a>
         <hr>
         {% endif %}
         {% endfor %}
+        <div class="container backg">
+            <h2>Comments ({{count}}) :</h2>
+            <form action="{% url 'postComment' newspk.id %}" method="POST">
 
-        <h2>Comments ({{count}}) :</h2>
-        <form action="{% url 'postComment' newspk.id %}" method="POST">
-
-            {% csrf_token %}
-            <div class="container">
-                <input type="text" class="form-control" name="comment" placeholder="add your comments" rows="2"
-                    cols="1">
-                <input type="hidden" name="postsno" value="{{newspk.id}}">
-                <input type="hidden" name="parentSno" value="">
-                <button type="submit" class="btn btn-outline-success my-2">add comment</button>
-            </div>
-
+                {% csrf_token %}
+                <div class="container backg">
+                    <input type="text" class="form-control" name="comment" placeholder="add your comments" rows="2"
+                        cols="1">
+                    <input type="hidden" name="postsno" value="{{newspk.id}}">
+                    <input type="hidden" name="parentSno" value="">
+                    <button type="submit" class="btn btn-outline-success my-2">add comment</button>
+                </div>
+        </div>
 
         </form>
 
         {% for comment in comments %}
-        <div class="container">
+        <div class="container backg">
 
             <div class="row my-3">
                 <p><b>{{comment.writer}} </b><span
@@ -89,7 +87,5 @@
         </div>
     </div>
     {% endfor %}
-</div>
-</div>
 </div>
 {% endblock %}

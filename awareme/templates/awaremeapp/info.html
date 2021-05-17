@@ -2,26 +2,22 @@
 {% block organistionactive %} active {% endblock organistionactive %}"
 {% block content %}
 
-<h1>Welcome to Aware Me</h1>
-<table>
-    <thead>
-<tr>
+<h3 style="display: flex;
+justify-content:center;background-color: rgb(116, 239, 243);margin-top:10px ;"class=" container">This is the list of Organisations that are registered with AwareMe</h3>
+
+
+<div class="container backg" style="display: flex;
+    justify-content:left; ">
     
-    <th>name</th>
-</tr>
-</thead>
-
-{% for i in model %}
-<tr>
-    <td><a href="{% url 'org_profile' i.id %}">{{i.user}}</a></td>
     
-</tr>
-{% endfor %}
+    <ol>
+        {% for i in model %}
+
+        <li style="background-color: rgb(248, 248, 247);border:20px;border-left-width: 2px;border-left-style: solid;border-right-width: 1.6px;border-right-style: solid;border-bottom-width: 1.6px;border-bottom-style: solid;border-top-width: 1.6px;border-top-style: solid;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;"><b>{{i.user}}</b>:<p><U>mission</U>:{{i.mission}}. <h6><U>Contact us</U>: {{i.Contact}} <U>our website</U> :<a style="text-decoration: none;" href="{{i.portfolio}}">{{i.portfolio}}</a> </h6> </p></li>
 
 
-</table>
+        {% endfor %}
+    </ol>
+</div>
 
 {% endblock %}
-
-
-

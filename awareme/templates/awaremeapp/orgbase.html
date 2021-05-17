@@ -66,7 +66,7 @@
           {% for group in request.user.groups.all %}
           {% if group.name == 'NGO' %}
           <li class="nav-item">
-            <a class="nav-link size" href="{% url 'feed' %}">Create News</a>
+            <a class="nav-link size {% block newsactive %} {% endblock newsactive %} " href="{% url 'feed' %}">Create News</a>
 
           </li>
           <li class="nav-item ">

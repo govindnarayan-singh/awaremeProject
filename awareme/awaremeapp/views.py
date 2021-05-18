@@ -100,20 +100,17 @@ def org_profile(request,pk_value):
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin','NGO'])
 def createFeed(request):
+    form=Formfeed()
+    context={'form':form}
     if request.method=='POST':
-        user=request.user
-        title=request.POST['title']
-        brief=request.POST['brief']
-        location=request.POST['location']
-        author=request.POST['author']
-
-        publish=OrgFeed(user=user,title=title,brief=brief,author=author,locations=location)
-        publish.save()
-        messages.success(request,"article has been published successfully...")
-        return redirect('listFeed')
+        form=Formfeed(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"article has been published successfully...")
+            return redirect('listFeed')
+        
     
-    
-    return render(request,'awaremeapp/feed_form.html')
+    return render(request,'awaremeapp/feed_form.html',context)
 
 
 

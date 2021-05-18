@@ -10,15 +10,16 @@ create an article
 
 <div class="container backg" style="display: flex;
     justify-content:left; ">
-<form method='POST'>
+    <form method='POST'>
 
-      {% csrf_token %}
-      {{form.as_p}}
+        {% csrf_token %}
+        {{form.as_p}}
 
 
-    <input type="submit" class="btn btn-success" style="background-color: rgb(99, 211, 99);border:12px;border-radius: 10px;" name="submit" value="PUBLISH">
+        <input type="submit" class="btn btn-success"
+            style="background-color: rgb(99, 211, 99);border:12px;border-radius: 10px;" name="submit" value="PUBLISH">
 
-</form>
+    </form>
 </div>
 
 {% endblock %}

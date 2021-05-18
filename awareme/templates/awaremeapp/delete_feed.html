@@ -1,13 +1,14 @@
 {% extends 'awaremeapp/orgbase.html' %}
 {% block content %}
 
-
-<p>are you sure you want to delete?</p>
+<div class="container backg">
+<p style="font-weight: bold;">are you sure you want to delete?</p>
 <form action="{% url 'deleteFeed' dlnewspk.id %}" method="POST">
     {% csrf_token %}
-    <a href="{% url 'listFeed' %}">cancel</a>
-    <input type="submit" name="delete">
+    <a href="{% url 'listFeed' %}" style="text-decoration: none;border-radius: 10px;" class="btn btn-secondary">cancel</a>
+    <input type="submit" class="btn btn-danger"
+            style="background-color: rgba(255, 0, 0, 0.753);border:12px;border-radius: 10px;margin: 5px;" name="submit" value="DELETE">
+
 </form>
-
-
+</div>
 {% endblock %}

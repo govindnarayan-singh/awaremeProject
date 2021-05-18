@@ -3,7 +3,7 @@
 {% block content %}
 
 <h3 style="display: flex;
-justify-content:center;background-color: rgb(116, 239, 243);margin-top:10px ;"class=" container">This is the list of Organisations that are registered with AwareMe</h3>
+justify-content:center;background-color: rgb(116, 239, 243);margin-top:10px ;"class=" container">The list of Organisations that are registered with AwareMe</h3>
 
 
 <div class="container backg" style="display: flex;
@@ -13,7 +13,10 @@ justify-content:center;background-color: rgb(116, 239, 243);margin-top:10px ;"cl
     <ol>
         {% for i in model %}
 
-        <li style="background-color: rgb(248, 248, 247);border:20px;border-left-width: 2px;border-left-style: solid;border-right-width: 1.6px;border-right-style: solid;border-bottom-width: 1.6px;border-bottom-style: solid;border-top-width: 1.6px;border-top-style: solid;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;"><b>{{i.user}}</b>:<p><U>mission</U>:{{i.mission}}. <h6><U>Contact us</U>: {{i.Contact}} <U>our website</U> :<a style="text-decoration: none;" href="{{i.portfolio}}">{{i.portfolio}}</a> </h6> </p></li>
+        <li style="background-color: rgb(248, 248, 247);border:20px;border-left-width: 2px;border-left-style: solid;border-right-width: 1.6px;border-right-style: solid;border-bottom-width: 1.6px;border-bottom-style: solid;border-top-width: 1.6px;border-top-style: solid;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;"><b>{{i.user.get_full_name}} (username : @{{i.user}})</b>:<p><U>mission</U>:{{i.mission}}. <h6><U>Contact us</U>: {{i.Contact}} <U>our website</U> :<a style="text-decoration: none;" href="{{i.portfolio}}">{{i.portfolio}}</a> 
+       
+            <a style="text-decoration: none;" class="btn btn-success" href="{% url 'donation' %}"> DONATE </a> </h6> </p></li>
+          
 
 
         {% endfor %}

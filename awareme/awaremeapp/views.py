@@ -239,6 +239,27 @@ def refineFeed(request):
     return render(request, "awaremeapp/refinefeed.html",context)
     
 
+def donating(request):
+    form=Donati()
+    context={'form':form}
+    if request.method=='POST':
+        form=Donati(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "thank you for donating...bhagwan apka bhala kre ")
+            return redirect('listFeed')
+    
+    return render(request,"awaremeapp/donation.html",context)
+
+def listdonated(request):
+    user=request.user
+    org=Donation.objects.all().filter(ngo=user)
+    count=org.count()
+    context={'org':org,'count':count}
+    return render(request, "awaremeapp/lidonate.html",context)
+
+
+
 
 
 

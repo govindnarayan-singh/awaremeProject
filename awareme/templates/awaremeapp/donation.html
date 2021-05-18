@@ -1,0 +1,32 @@
+{% extends 'awaremeapp/orgbase.html' %}
+
+{% block title %}
+Donation Page
+{% endblock title %}
+
+{% block content %}
+
+
+
+
+
+
+<div class="container" style="display: flex;
+    justify-content:center;background-color: rgba(240, 255, 255, 0.699); ">
+
+<form method="POST" style="font-weight: bold;">
+    
+<ul style="background-color: rgb(1, 255, 255);display: inline-block;">
+    <li>Remember that the happiest people are not those getting more, but those giving more...</li>
+</ul>
+      <h3 style="background-color: rgb(255, 73, 1);">make sure you know the username of the organisation</h3>
+        {% csrf_token %}
+        {{form.as_p}}
+        {{form.errors}}
+        <input type="submit" class="btn btn-success"
+            style="background-color: rgb(99, 211, 99);border:12px;border-radius: 10px;" name="submit" value="DONATE">
+
+    </form>
+</div>
+
+{% endblock %}

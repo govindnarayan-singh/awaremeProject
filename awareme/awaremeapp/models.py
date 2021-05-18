@@ -34,6 +34,17 @@ class FeedComment(models.Model):
     def __str__(self):
         return str(self.writer) +' --wrote--> ' +self.comment[0:4] + '...'
     
+class Donation(models.Model):
+    ngo=models.ManyToManyField(User)
+    name=models.CharField(max_length=240)
+    email=models.EmailField(max_length=500)
+    amount=models.IntegerField(default=0)
+    cardnumber=models.CharField(max_length=18)
+
+    def __str__(self):
+        return self.name + ' donated '+str(self.amount)+'rs'
+    
+    
 
 
 

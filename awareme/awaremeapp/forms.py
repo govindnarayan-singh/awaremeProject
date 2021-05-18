@@ -28,6 +28,32 @@ class mission_register(ModelForm):
                 'placeholder':'https://example.com'
             }),
         }
+class Donati(ModelForm):
+    class Meta:
+        model=Donation
+        fields='__all__'
+        widgets={
+             'name':TextInput(attrs={
+                'class':"form-control",
+                'style':'max-width:500px;font-weight:bold;',
+                'placeholder':'enter your name here'
+            }),
+             'email':EmailInput(attrs={
+                'class':"form-control",
+                'style':'max-width:500px;font-weight:bold;',
+                'placeholder':'@'
+            }),
+             'amount':TextInput(attrs={
+                'class':"form-control",
+                'style':'max-width:500px;font-weight:bold;',
+                'placeholder':'in rupees'
+            }),
+             'cardnumber':TextInput(attrs={
+                'class':"form-control",
+                'style':'max-width:500px;font-weight:bold;',
+                'placeholder':''
+            }),
+        }
 
 class Organisation(ModelForm):
     class Meta:

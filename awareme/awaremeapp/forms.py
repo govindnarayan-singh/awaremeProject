@@ -56,6 +56,9 @@ class Formfeed(ModelForm):
     class Meta:
         model=OrgFeed
         fields='__all__'
+        exclude=['user']
+
+
         widgets={
             'title':TextInput(attrs={
                 'class':"form-control",

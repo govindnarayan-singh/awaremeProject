@@ -68,15 +68,11 @@
           </li>
           {% for group in request.user.groups.all %}
           {% if group.name == 'NGO' %}
+
           <li class="nav-item">
-            <a class="nav-link size {% block newsactive %} {% endblock newsactive %} " href="{% url 'feed' %}">Create News</a>
-
+            <a class="nav-link size {% block newsactive %} {% endblock newsactive %} " href="{% url 'publishedFeed' %}">Publish Page</a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link size {% block settingactive %} {% endblock settingactive %}"
-              href="{% url 'account_setting' %}">account settings</a>
-
-          </li>
+          
           {%endif%}
           {%endfor%}
 
@@ -96,7 +92,7 @@
         
           {% if user.is_authenticated %}
 
-          <a class="btn btn-danger size  targ " href="{% url 'logout' %}">Logout</a>
+          <a class="btn btn-danger size  inoutlog " href="{% url 'logout' %}">Logout</a>
 
           {% else %}
 

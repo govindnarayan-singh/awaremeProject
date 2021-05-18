@@ -6,6 +6,7 @@ urlpatterns = [
       path('profileOrg/<str:pk_value>/',views.org_profile,name="org_profile"),
       path('Createfeed/',views.createFeed,name="feed"),
       path('listFeed/',views.listFeed,name="listFeed"),
+      path('publishedFeed/',views.refineFeed,name="publishedFeed"),
       path('search/',views.search,name="search"),
       path('newsFeed/<str:pk>/',views.newsFeed,name="newsFeed"),
       path('postComment/<str:pk>/',views.postComment,name="postComment"),

@@ -1,0 +1,47 @@
+{% extends 'awaremeapp/orgbase.html' %}
+
+{% block title %}
+Publish Page
+{% endblock title %}
+
+{% block newsactive %} active {% endblock newsactive %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="accordion accordion-flush" style="width: 50vw;position: relative;left: 25vw;" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    ToolBox
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body"><a class="btn btn-warning" style="margin: 5px;" href="{% url 'feed' %}">Create Article</a> <a
+                        class="btn btn-warning" style="margin: 5px;" href="{% url 'account_setting' %}">Account Settings</a> </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <ol style="list-style: none;">
+        {% for feeds in org %}
+        <li>
+            <h5><a class="text-dark"
+                    style="background-color: rgba(255, 254, 254, 0.637);;text-decoration: none;font-size: 25px; font-family: 'Roboto Mono', monospace;"
+                    href="{% url 'newsFeed' feeds.id %}"><b style="color: rgb(0, 68, 255);">{{feeds.title}}</b></a></h5>
+        </li>
+        <p
+            style="background-color: rgba(144, 247, 112, 0.76);font-weight: bold;font-size: 20px;color:rgb(214, 68, 68);padding-bottom: 5px;padding-left: 5px;padding-top: 5px;padding-right: 5px;">
+            author - {{feeds.author}}<br>
+            {{feeds.brief|truncatechars:500}}
+            <a class="" style="text-decoration: none;color:black;" href="{% url 'newsFeed' feeds.id %}"><b>continue
+                    reading</b></a>
+        </p>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock %}

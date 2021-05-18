@@ -100,14 +100,20 @@ def org_profile(request,pk_value):
 @login_required(login_url='login')
 @allowed_user(allowed_roles=['admin','NGO'])
 def createFeed(request):
-    form=Formfeed()
     if request.method=='POST':
-        form=Formfeed(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('listFeed')
-    context={'form':form}
-    return render(request,'awaremeapp/feed_form.html',context)
+        user=request.user
+        title=request.POST['title']
+        brief=request.POST['brief']
+        location=request.POST['location']
+        author=request.POST['author']
+
+        publish=OrgFeed(user=user,title=title,brief=brief,author=author,locations=location)
+        publish.save()
+        messages.success(request,"article has been published successfully...")
+        return redirect('listFeed')
+    
+    
+    return render(request,'awaremeapp/feed_form.html')
 
 
 
@@ -221,7 +227,18 @@ def search(request):
 
     context={'feed':feed,'query':query}
     return render(request,'awaremeapp/search.html',context)
-     
+
+
+@allowed_user(allowed_roles=['admin','NGO'])
+@login_required(login_url='login')
+def refineFeed(request):
+    user=request.user
+    org=OrgFeed.objects.all().filter(user=user)
+    context={'org':org}
+
+    return render(request, "awaremeapp/refinefeed.html",context)
+    
+
 
 
 

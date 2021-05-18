@@ -14,7 +14,7 @@ class OrgDetail(models.Model):
         return str(self.user)
 
 class OrgFeed(models.Model):
-
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     title=models.CharField(blank=True,null=True,max_length=250)
     brief=models.TextField(blank=True,null=True)
     author=models.CharField(blank=True,null=True,max_length=250)

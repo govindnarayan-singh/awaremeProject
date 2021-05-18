@@ -1,21 +1,41 @@
 {% extends 'awaremeapp/orgbase.html' %}
-{% block newsactive %} active {% endblock newsactive %}
+
 {% block title %}
 create an article
 {% endblock title %}
+
 {% block content %}
+
+
 
 <div class="container backg" style="display: flex;
     justify-content:left; ">
 <form method='POST'>
     <p></p>
-    <ul style="background-color: rgb(1, 255, 255);">
+    <ul style="background-color: rgb(1, 255, 255);display: inline-block;">
         <li>here you can write an article for Viewers..</li>
     </ul>
     {% csrf_token %}
-    {{form.as_p}}
+    <div class="mb-3">
+        <label for="title0" class="form-label">Title</label>
+        <input type="text" class="form-control"  id="title0" name="title" required>
+      </div>
+    <div class="mb-3">
+        <label for="bri" class="form-label">Brief</label>
+       <textarea name="brief" id="bri"class="form-control"  style="width:80vw;height:200px" cols="30" rows="10"></textarea>
+      </div>
+    <div class="mb-3">
+        <label for="auth" class="form-label">Author</label>
+        <input type="text" class="form-control" id="auth" name="author" required>
+      </div>
+    <div class="mb-3">
+        <label for="loca" class="form-label">Location</label>
+        <input type="text" class="form-control" id="loca" name="location" required>
+      </div>
+     
 
-    <input type="submit" class="btn btn-success" style="background-color: rgb(99, 211, 99);border:12px;border-radius: 10px;" name="submit" value="POST ARTICLE">
+
+    <input type="submit" class="btn btn-success" style="background-color: rgb(99, 211, 99);border:12px;border-radius: 10px;" name="submit" value="PUBLISH">
 
 </form>
 </div>

@@ -4,9 +4,11 @@ from django.contrib.auth.models import User
 
 from django.contrib import messages
 
+from awaremeapp.decorators import *
+
 #user home page
 
-
+@unauthenticated_user 
 def userhome(request):
 
     if request.method == 'POST':

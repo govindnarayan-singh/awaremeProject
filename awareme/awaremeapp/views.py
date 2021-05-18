@@ -238,7 +238,7 @@ def refineFeed(request):
 
     return render(request, "awaremeapp/refinefeed.html",context)
     
-
+@login_required(login_url='login')
 def donating(request):
     form=Donati()
     context={'form':form}
@@ -251,6 +251,7 @@ def donating(request):
     
     return render(request,"awaremeapp/donation.html",context)
 
+@login_required(login_url='login')
 def listdonated(request):
     user=request.user
     org=Donation.objects.all().filter(ngo=user)

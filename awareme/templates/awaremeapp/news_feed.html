@@ -14,10 +14,16 @@
     <div class="">
         {% for group in request.user.groups.all %}
         {% if group.name == 'NGO' %}
+        
+        {% if newspk.user == request.user %}
+            
+        
+            
         <a class="btn btn-light" style="background-color: rgb(225, 182, 104);color: white;" href="{% url 'updateFeed' newspk.id %}">update news </a>
 
         <a class="btn btn-danger" style="background-color: rgba(248, 41, 41, 0.747);" href="{% url 'deleteFeed' newspk.id %}">delete </a>
         <hr>
+        {% endif %}
         {% endif %}
         {% endfor %}
         <div class="container backg">

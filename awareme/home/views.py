@@ -24,7 +24,7 @@ def ContactUs(request):
         number=request.POST["number"]
         content=request.POST["textbox"]
         
-        contact=Contact(name=name,email=email,content=content,phone=number)
+        contact=Contact(name=name,email=email,phone=number,content=content)
         if len(name)<2 or len(email)<5 or len(content)<4 or len(number)<9:
             messages.error(request, "please fill fields properly")
         else:

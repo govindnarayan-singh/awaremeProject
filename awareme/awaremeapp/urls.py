@@ -5,6 +5,7 @@ urlpatterns = [
       path('details/',views.orgList,name="details"),
       path('profileOrg/<str:pk_value>/',views.org_profile,name="org_profile"),
       path('Createfeed/',views.createFeed,name="feed"),
+      path('search/',views.search,name="search"),
       path('donation/',views.donating,name="donation"),
       path('listdonated/',views.listdonated,name="listdonate"),
       path('listFeed/',views.listFeed,name="listFeed"),

@@ -82,7 +82,7 @@
         </ul>
        
         <form class="d-flex" method="GET" action="{% url 'search' %}">
-          {% csrf_token %}
+          <!-- {% csrf_token %} -->
           <input class="form-control inoutlog wid " type="search" placeholder="Search" name="query" id="query"
             aria-label="Search">
           <button class="btn btn-outline-success size mx-1 inoutlog" type="submit">Search</button>

@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .decorators import *
 from awaremeapp.templatetags import extras
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Authentication APIs
@@ -208,7 +209,7 @@ def postComment(request, pk):
 
     return redirect(f'/awareme/newsFeed/{pk}')
 
-
+@csrf_exempt
 @login_required(login_url='login')
 def search(request):
     query = request.GET['query']

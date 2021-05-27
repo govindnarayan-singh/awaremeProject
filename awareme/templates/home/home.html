@@ -12,8 +12,8 @@
 
     <ol style="list-style: none;" >
         {% for feeds in feed %}
-            <li ><h5><a class="text-dark" style="background-color: rgba(0, 4, 255, 0.637);text-decoration: none;font-size: 25px; font-family: 'Roboto Mono', monospace;" href="{% url 'newsFeed' feeds.id %}"><b style="color: rgb(255, 255, 255);">{{feeds.title}}</b></a></h5></li>
-            <p style="background-color: rgba(255, 255, 255, 0);font-weight: bold;font-size: 20px;color:rgb(253, 0, 0);padding-bottom: 5px;padding-left: 5px;padding-top: 5px;padding-right: 5px;">author - {{feeds.author}}<br>
+            <li ><h5><a class="text-dark" style="background-color: rgba(0, 4, 255, 0.637);text-decoration: none;font-size: 25px; font-family: 'Roboto Mono', monospace;" href="{% url 'newsFeed' feeds.id %}"><b style="color: rgb(238, 241, 12);">{{feeds.title}}</b></a></h5></li>
+            <p style="background-color: rgba(255, 255, 255, 0);font-weight: bold;font-size: 20px;color:rgb(255, 255, 255);padding-bottom: 5px;padding-left: 5px;padding-top: 5px;padding-right: 5px;">author - {{feeds.author}}<br>
             {{feeds.brief|truncatechars:500}}
             <a class=""style="text-decoration: none;color:black;" href="{% url 'newsFeed' feeds.id %}"><b>continue reading</b></a></p>
             <hr>

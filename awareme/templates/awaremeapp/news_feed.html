@@ -1,8 +1,14 @@
 {% extends 'awaremeapp/orgbase.html' %}
+{% block title %}
+{{newspk.title}}
+{% endblock title %}
 {% load static %}
 {% block content %}
 {% load humanize %}
 {% load extras %}
+
+
+    
 
 <div class="container backg">
     <h1 style="color: rgb(75, 0, 75);font-size: 55px;">{{newspk.title}}</h1>
